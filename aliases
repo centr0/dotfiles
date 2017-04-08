@@ -1,0 +1,65 @@
+
+# source
+alias reload='source ~/.bashrc'
+
+# ls
+alias l='ls -F'
+alias la='ls -FA'
+alias ll='ls -l'
+alias lh='ls -lAh'
+
+# cd
+alias ..='cd ..'
+alias d='cd ~/Desktop'
+function cdl { cd $1 && ls; }
+
+# git
+alias gs='git status'
+alias ga='git add .'
+alias gd='git ls-files --deleted | xargs git rm'
+alias gc='git commit'
+alias gl='git log --pretty="%H %s"'
+alias gp='git push'
+alias gf='git difftool'
+
+# search
+alias f='find -x * -name'
+
+# svn
+alias ss='svn status'
+function sd { svn status | ruby -ne '$_.match(/^!\s+(.+)\n/) { puts $1 }' | xargs svn rm; }
+function sf { svn diff --diff-cmd=ksdiff-svnwrapper $@; }
+
+# src and dev completions
+function src { cd ~/dev/src/$1; }
+function dep { cd ~/dev/deploy/$1; }
+
+# copy working directory & filename
+alias cwd='echo -n `pwd` | pbcopy'
+alias cfn='echo -n $(basename `pwd`) | pbcopy'
+
+# copy ip address to clipboard
+function ip { ifconfig en1 | ruby -ne '$_.match(/inet\s((\d|\.)+)/) { print $1 }' | pbcopy; }
+
+# unpack tar file
+alias unpack='tar -xvzf'
+
+# list out processes running on a specific port
+function tcp { lsof -i tcp:$1; }
+
+# open (mostly markdown) files with iA Writer
+function write {
+  if [ ! -e $1 ]; then touch $1; fi; open -a "iA Writer" $1
+}
+
+# start tomcat (requires you to navigate to tomcat directory first)
+alias st='./bin/startup.sh && tail -f logs/catalina.out'
+
+# kill tomcat
+function kt { ps ax | grep java | grep "catalina" | awk '{print $1}' | xargs kill -9; }
+
+# google chrome disable same origin policy
+alias chromenowebsec='open -a Google\ Chrome --args --disable-web-security'
+
+# visual studio code
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
