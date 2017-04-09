@@ -1,6 +1,6 @@
 
 # source
-alias reload='source ~/.bashrc'
+alias reload='source ~/.zshrc'
 
 # ls
 alias l='ls -F'
@@ -25,11 +25,6 @@ alias gf='git difftool'
 # search
 alias f='find -x * -name'
 
-# svn
-alias ss='svn status'
-function sd { svn status | ruby -ne '$_.match(/^!\s+(.+)\n/) { puts $1 }' | xargs svn rm; }
-function sf { svn diff --diff-cmd=ksdiff-svnwrapper $@; }
-
 # src and dev completions
 function src { cd ~/dev/src/$1; }
 function dep { cd ~/dev/deploy/$1; }
@@ -46,11 +41,6 @@ alias unpack='tar -xvzf'
 
 # list out processes running on a specific port
 function tcp { lsof -i tcp:$1; }
-
-# open (mostly markdown) files with iA Writer
-function write {
-  if [ ! -e $1 ]; then touch $1; fi; open -a "iA Writer" $1
-}
 
 # start tomcat (requires you to navigate to tomcat directory first)
 alias st='./bin/startup.sh && tail -f logs/catalina.out'
