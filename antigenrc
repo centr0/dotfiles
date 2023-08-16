@@ -1,9 +1,0 @@
-# antigen settings
-antigen use oh-my-zsh
-antigen theme kolo
-
-antigen apply
-
-# enable colors in prompts
-autoload -U colors && colors
-setopt promptsubst

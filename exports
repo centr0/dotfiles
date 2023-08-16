@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# SSH
+export SSH_ENV="$HOME/.ssh/environment"
+
+# Ruby
+export RUBYOPT=rubygems
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# VSCode
+export EDITOR="VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*"

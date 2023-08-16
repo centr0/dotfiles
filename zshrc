@@ -1,8 +1,7 @@
-export DEV=~/dev
-export DOTFILES=$DEV/dotfiles
-
-source $DOTFILES/config
-source $DOTFILES/localrc
+#!/usr/bin/env bash
+export SRC=$HOME/src
+export DOTFILES=$SRC/dotfiles
 source $DOTFILES/aliases
-source $DEV/antigen/antigen.zsh
-antigen init $DOTFILES/antigenrc
+source $DOTFILES/exports
+source $DOTFILES/paths
+source $DOTFILES/localrc

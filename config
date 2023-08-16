@@ -1,6 +1,0 @@
-
-# Change default text editor to TextMate
-export EDITOR="sub -w"
-
-# When adding items to history, remove duplicates upstream
-export HISTCONTROL=erasedups
