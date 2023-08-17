@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-
+# nvim
+alias vim='nvim'
 # source
 alias reload='source ~/.zshrc'
 
