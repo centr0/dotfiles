@@ -13,7 +13,7 @@ else
 fi
 
 echo "Installing nvim configuration..."
-ln -s "$HOME/src/dotfiles/nvim" "$HOME/.config/nvim"
+cp -R "$HOME/src/dotfiles/nvchad/" "$HOME/.config/nvim/lua/custom/"
 echo "Configuration for nvim has been installed."
 
 echo "==============================================="
