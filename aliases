@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # nvim
 alias vim='nvim'
+alias nvupdate="$HOME/src/dotfiles/bin/pull.sh"
 # source
 alias reload='source ~/.zshrc'
 
