@@ -16,7 +16,7 @@ M.telescope = {
 }
 
 -- my custom mappings
-M.centro = {
+M.custom = {
 
 }
 return M
