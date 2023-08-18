@@ -6,7 +6,7 @@ timestamp=$(date "+%Y%m%d%H%M%S")
 nvm_custom="$HOME/.config/nvim/lua/custom"
 nvm_dest="$HOME/src/dotfiles/nvchad/"
 
-cp -rvf "$nvm_custom"/* "$nvm_dest"
+cp -rf "$nvm_custom"/* "$nvm_dest"
 
 echo "Pulled your custom updates from ~/.config/nvim..."
 echo "Checking for changes..."
