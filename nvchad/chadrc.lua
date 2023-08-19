@@ -4,10 +4,10 @@ require "custom.options"
 local M = {}
 
 M.ui = {
-  theme = 'nightfox',
+  theme = 'everforest',
   hl_override = {
     CursorLine = {
-      bg = "#161b26"
+      bg = "one_bg"
     }
   }
 }
