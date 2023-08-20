@@ -1,5 +1,4 @@
 local opt = vim.opt
--- local api = vim.api
 opt.cursorline = true
 opt.shiftwidth = 4
 opt.tabstop = 4

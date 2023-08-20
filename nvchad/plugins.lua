@@ -1,8 +1,10 @@
 local plugins = {
+  -- allows for easy switching between nvim and terms within tmux
   {
     'christoomey/vim-tmux-navigator',
     lazy = false,
   },
+  -- language server
   {
     'neovim/nvim-lspconfig',
     config = function()
@@ -10,6 +12,7 @@ local plugins = {
       require 'custom.configs.lspconfig'
     end
   },
+  -- package manager for lsp
   {
     'williamboman/mason.nvim',
     opts = {
