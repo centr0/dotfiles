@@ -1,6 +1,4 @@
 ---@type ChadrcConfig 
--- load custom options
-require "custom.options"
 
 local M = {}
 
