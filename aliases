@@ -2,6 +2,10 @@
 # nvim
 alias vim='nvim'
 alias nvupdate="$HOME/src/dotfiles/bin/pull.sh"
+
+#venv
+alias venv='$HOME/src/dotfiles/bin/utils/venv.sh && source .venv/bin/activate'
+
 # source
 alias reload='source ~/.zshrc'
 

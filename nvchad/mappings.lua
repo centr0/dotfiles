@@ -30,6 +30,9 @@ M.custom = {
   n = {
     ["<leader>sv"] = {"<cmd>vs<CR>", "Split vertically"},
     ["<leader>sh"] = {"<cmd>sp<CR>", "Split horizonally"}
+  },
+  i = {
+    ["jk"] = {"<ESC>", "Go back to normal mode."},
   }
 }
 return M

@@ -1,4 +1,29 @@
 local plugins = {
+  -- syntax highlighting
+  {
+    'nvim-treesitter/nvim-treesitter',
+    opts = {
+      ensure_installed = {
+        'bash',
+        'c',
+        'c_sharp',
+        'cpp',
+        'css',
+        'go',
+        'html',
+        'javascript',
+        'json',
+        'python',
+        'rust',
+        'sql',
+        'tsx',
+        'typescript',
+        'vim',
+        'xml',
+        'yaml',
+      },
+    },
+  },
   -- allows for easy switching between nvim and terms within tmux
   {
     'christoomey/vim-tmux-navigator',

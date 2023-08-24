@@ -17,4 +17,6 @@ opt.clipboard:append('unnamedplus')
 opt.splitright = true
 opt.splitbelow = true
 opt.iskeyword:append('-')
-
+opt.guicursor = ""
+-- use vim.cmd() to run vim commands in lua
+-- vim.opt.guicursor:append('v-sm:block-ModesVisual')
