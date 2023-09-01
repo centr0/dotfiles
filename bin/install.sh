@@ -54,8 +54,9 @@ else
     echo "-- tmux package manager has been installed."
 fi
 
+cp "$HOME/src/dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
+tmux source-file "$HOME/.tmux.conf"
 echo "-- Configuration for tmux has been installed."
 
-cp "$HOME/src/dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
 
 echo "==============================================="
