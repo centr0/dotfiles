@@ -19,5 +19,15 @@ opt.splitright = true
 opt.splitbelow = true
 opt.iskeyword:append('-')
 opt.guicursor = ""
--- use vim.cmd() to run vim commands in lua
--- vim.opt.guicursor:append('v-sm:block-ModesVisual')
+
+
+-- Run gofmt on save
+
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').gofmt()
+  end,
+  group = format_sync_grp,
+})

@@ -38,8 +38,7 @@ alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup 
 alias f='find -x * -name'
 
 # dev and src
-alias godev='cd ~/dev'
-alias gosrc='cd ~/dev/src'
+alias gosrc='cd ~/src'
 
 # copy working directory & filename
 alias cwd='echo -n `pwd` | pbcopy'
@@ -56,9 +55,6 @@ function tcp { lsof -i tcp:$1; }
 
 # start tomcat (requires you to navigate to tomcat directory first)
 alias st='./bin/startup.sh && tail -f logs/catalina.out'
-
-# kill tomcat
-function kt { ps ax | grep java | grep "catalina" | awk '{print $1}' | xargs kill -9; }
 
 # google chrome disable same origin policy
 alias chromenowebsec='open -a Google\ Chrome --args --disable-web-security'
