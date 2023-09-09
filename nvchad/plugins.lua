@@ -57,16 +57,6 @@ local plugins = {
         ft = {'go', 'gomod'},
         build = ':lua require("go.install").update_all_sync()'
     },
-    {
-        'gen740/SmoothCursor.nvim',
-        lazy = false,
-        config = function()
-            require('smoothcursor').setup({
-                autostart = true,
-                speed = 25,
-            })
-        end
-    }
 }
 
 return plugins

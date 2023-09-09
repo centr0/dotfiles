@@ -8,6 +8,7 @@ M.ui = {
   changed_themes = {
     ayu_dark = {
       base_16 = {
+        base00 = "#070a10",
         base0F = "#E6E1CF"
       },
     },
@@ -15,7 +16,7 @@ M.ui = {
   -- customize cursorline highlight
   hl_override = {
     CursorLine = {
-      bg = "one_bg"
+      bg = "black2"
     }
   },
   nvdash = {
