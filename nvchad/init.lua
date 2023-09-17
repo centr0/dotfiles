@@ -22,7 +22,6 @@ opt.guicursor = ""
 
 
 -- Run gofmt on save
-
 local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
@@ -32,26 +31,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = format_sync_grp,
 })
 
-local autocmd = vim.api.nvim_create_autocmd
-
-autocmd({ 'ModeChanged' }, {
-  callback = function()
-    local current_mode = vim.fn.mode()
-    if current_mode == 'n' then
-      vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#8aa872' })
-      vim.fn.sign_define('smoothcursor', { text = '' })
-    elseif current_mode == 'v' then
-      vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#bf616a' })
-      vim.fn.sign_define('smoothcursor', { text = '' })
-    elseif current_mode == 'V' then
-      vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#bf616a' })
-      vim.fn.sign_define('smoothcursor', { text = '' })
-    elseif current_mode == '�' then
-      vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#bf616a' })
-      vim.fn.sign_define('smoothcursor', { text = '' })
-    elseif current_mode == 'i' then
-      vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#668aab' })
-      vim.fn.sign_define('smoothcursor', { text = '' })
-    end
-  end,
-})
+-- transparent background
+vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
+vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+vim.api.nvim_set_hl(0, "EndOfBuffer", {bg = "none"})
+vim.api.nvim_set_hl(0, "StatusLine", {bg = "none"})

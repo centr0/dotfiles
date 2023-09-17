@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # nvim
 alias vim='nvim'
+alias nvpull="$HOME/src/dotfiles/bin/pull.sh"
+alias nvpush="$HOME/src/dotfiles/bin/push.sh"
 alias nvupdate="$HOME/src/dotfiles/bin/pull.sh"
 
 #venv

@@ -8,7 +8,7 @@ M.ui = {
   changed_themes = {
     ayu_dark = {
       base_16 = {
-        base00 = "#070a10",
+        base00 = "none",
         base0F = "#E6E1CF"
       },
     },
@@ -16,7 +16,7 @@ M.ui = {
   -- customize cursorline highlight
   hl_override = {
     CursorLine = {
-      bg = "black2"
+      bg = "black"
     }
   },
   nvdash = {
@@ -38,6 +38,10 @@ M.ui = {
       { "  Themes", "Spc t h", "Telescope themes" },
       { "  Mappings", "Spc c h", "NvCheatsheet" },
     },
+  },
+  statusline = {
+    theme = "minimal",
+    separator_style = "block",
   },
 }
 -- load custom plugins
