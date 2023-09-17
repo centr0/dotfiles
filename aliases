@@ -3,7 +3,7 @@
 alias vim='nvim'
 alias nvpull="$HOME/src/dotfiles/bin/pull.sh"
 alias nvpush="$HOME/src/dotfiles/bin/push.sh"
-alias nvupdate="$HOME/src/dotfiles/bin/pull.sh"
+alias nvupdate="$HOME/src/dotfiles/bin/pull.sh && $HOME/src/dotfiles/bin/push.sh"
 
 #venv
 alias venv='$HOME/src/dotfiles/bin/utils/venv.sh && source .venv/bin/activate'
