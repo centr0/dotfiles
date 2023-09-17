@@ -14,7 +14,4 @@ echo "-- Pulled your tmux configuration..."
 
 echo "-- Checking for changes..."
 
-cd "$HOME/src/dotfiles"
-
-git_status=$(git status)
 

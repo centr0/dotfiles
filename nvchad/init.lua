@@ -19,8 +19,7 @@ opt.splitright = true
 opt.splitbelow = true
 opt.iskeyword:append('-')
 opt.guicursor = ""
-
-
+opt.completeopt="menu,menuone,noinsert,noselect"
 -- Run gofmt on save
 local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 vim.api.nvim_create_autocmd("BufWritePre", {

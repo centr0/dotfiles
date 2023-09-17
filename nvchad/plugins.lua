@@ -1,3 +1,4 @@
+local cmp = require "custom.configs.cmp"
 local plugins = {
     -- syntax highlighting
     {
@@ -57,6 +58,10 @@ local plugins = {
         ft = {'go', 'gomod'},
         build = ':lua require("go.install").update_all_sync()'
     },
+    {
+        'hrsh7th/nvim-cmp',
+        opts = cmp.cmp,
+    }
 }
 
 return plugins
