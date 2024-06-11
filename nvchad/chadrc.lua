@@ -8,7 +8,7 @@ M.ui = {
   changed_themes = {
     ayu_dark = {
       base_16 = {
-        base00 = "none",
+        base00 = "#000000",
         base0F = "#E6E1CF"
       },
     },
