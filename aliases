@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 # nvim
 alias vim='nvim'
-alias nvpull="$HOME/src/dotfiles/bin/pull.sh"
-alias nvpush="$HOME/src/dotfiles/bin/push.sh"
-alias nvupdate="$HOME/src/dotfiles/bin/pull.sh && $HOME/src/dotfiles/bin/push.sh"
 
 #venv
 alias venv='$HOME/src/dotfiles/bin/utils/venv.sh && source .venv/bin/activate'
@@ -62,7 +59,7 @@ alias st='./bin/startup.sh && tail -f logs/catalina.out'
 alias chromenowebsec='open -a Google\ Chrome --args --disable-web-security'
 
 # visual studio code
-code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+code() { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*; }
 
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
