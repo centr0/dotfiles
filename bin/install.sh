@@ -49,7 +49,8 @@ else
 fi
 
 cp "$HOME/src/dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
-tmux source-file "$HOME/.tmux.conf"
+tmux source "$HOME/.tmux.conf"
 echo "-- Configuration for tmux has been installed."
+echo "-- Run <tmux-prefix> + I to install tmux plugins."
 
 echo "==============================================="

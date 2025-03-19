@@ -4,4 +4,3 @@ export DOTFILES=$SRC/dotfiles
 source $DOTFILES/aliases
 source $DOTFILES/exports
 source $DOTFILES/paths
-source $DOTFILES/localrc
