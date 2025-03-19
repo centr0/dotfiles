@@ -52,9 +52,6 @@ alias unpack='tar -xvzf'
 # list out processes running on a specific port
 function tcp { lsof -i tcp:$1; }
 
-# start tomcat (requires you to navigate to tomcat directory first)
-alias st='./bin/startup.sh && tail -f logs/catalina.out'
-
 # google chrome disable same origin policy
 alias chromenowebsec='open -a Google\ Chrome --args --disable-web-security'
 
