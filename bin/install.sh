@@ -14,11 +14,6 @@ else
 	echo "-- Dotfiles have already been installed. No changes made."
 fi
 
-echo "-- Attempting to install tmux..."
-
-brew update
-brew install tmux
-
 echo "-- Installing tmux configuration..."
 
 old_tmux_config="$HOME/.tmux.conf"
