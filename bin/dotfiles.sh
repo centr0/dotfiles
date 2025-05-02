@@ -64,12 +64,10 @@ copy_dotfiles_to_config() {
   tmux source "$HOME/.tmux.conf"
   echo "-- Configuration for tmux has been installed."
   echo "-- Run <tmux-prefix> + I to install tmux plugins."
-
-  echo "==============================================="
 }
 
 save_dotfiles_to_git() {
-  echo "Saving dotfiles to git..."
+  echo "-- Saving dotfiles to git..."
   cd "$DOTFILES_REPO"
 
   git_status=$(git status)
