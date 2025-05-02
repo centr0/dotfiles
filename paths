@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/bin
 PATH=$PATH:$HOME/.docker/bin
 PATH=$PATH:$HOME/.cargo/bin
 PATH=$PATH:$HOME/go/bin
 PATH=$PATH:$HOME/.local/bin
-PATH=$PATH:/usr/local/opt/python/libexec/bin
-

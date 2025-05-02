@@ -52,34 +52,11 @@ alias unpack='tar -xvzf'
 # list out processes running on a specific port
 function tcp { lsof -i tcp:$1; }
 
-# google chrome disable same origin policy
-alias chromenowebsec='open -a Google\ Chrome --args --disable-web-security'
-
 # visual studio code
 code() { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*; }
 
-# Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+# change to random wallpaper
+alias chwp='$HOME/src/dotfiles/bin/utils/wallpaper-shuffle.sh'
 
-# Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
-# URL-encode strings
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
-
-# Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
-# (useful when executing time-consuming commands)
-alias bell="tput bel"
-
-# Intuitive map function
-# For example, to list all directories that contain a certain file:
-# find . -name .gitattributes | map dirname
-alias map="xargs -n1"
-
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
-# Recursively delete `.DS_Store` files
-alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
+# reset wifi
+alias rewifi='$HOME/src/dotfiles/bin/utils/reset-wifi.sh'

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# interface for hyprpaper
+sunset() {
+  $HOME/src/dotfiles/bin/utils/hyprsunset-interface.sh "$@"
+}
+
+# dotfiles install, save etc
+dev() {
+  $HOME/src/dotfiles/bin/dotfiles.sh "$@"
+}
