@@ -36,10 +36,14 @@ check_config_existence() {
 copy_config_to_dotfiles() {
   local folders=("${!1}")
   mkdir -p "$DOTFILES_DIR"
-
   for dir in "${folders[@]}"; do
     echo "-- Pulling: Copying $CONFIG_DIR/$dir to $DOTFILES_DIR/$dir"
-    cp -r "$CONFIG_DIR/$dir" "$DOTFILES_DIR/$dir"
+    if [ "$dir" == "tmux/tmux.conf" ]; then
+      mkdir -p "$DOTFILES_DIR/tmux"
+      cp -r "$CONFIG_DIR/$dir" "$DOTFILES_DIR/tmux/"
+    else
+      cp -r "$CONFIG_DIR/$dir" "$DOTFILES_DIR/"
+    fi
   done
 }
 
@@ -99,11 +103,19 @@ required_files=(
   "tmux/tmux.conf"
 )
 
+to_copy=(
+  "ghostty"
+  "hypr"
+  "mako"
+  "waybar"
+  "wofi"
+  "tmux/tmux.conf"
+)
 # Parse args
 case "$1" in
 --pull)
   check_config_existence required_folders[@] required_files[@]
-  copy_config_to_dotfiles required_folders[@]
+  copy_config_to_dotfiles to_copy[@]
   ;;
 --push)
   copy_dotfiles_to_config required_folders[@]
