@@ -60,3 +60,12 @@ alias chwp='$HOME/src/dotfiles/bin/utils/wallpaper-shuffle.sh'
 
 # reset wifi
 alias rewifi='$HOME/src/dotfiles/bin/utils/reset-wifi.sh'
+
+# interactive find directory and change into it
+alias fd='cd "$(find . -type d -not -path "*/\.*" | fzf --preview="ls -la {}")"'
+
+# interactive go to project/directory open nvim
+alias gtp='cd "$(find . -type d -not -path "*/\.*" | fzf --preview="ls -la {}")" && nvim .'
+
+# interactive go to file and open nvim
+alias gtf='nvim $(fzf -m --preview="bat --colors=always {}")'
