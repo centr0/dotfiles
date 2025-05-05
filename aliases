@@ -68,4 +68,4 @@ alias fd='cd "$(find . -type d -not -path "*/\.*" | fzf --preview="ls -la {}")"'
 alias gtp='cd "$(find . -type d -not -path "*/\.*" | fzf --preview="ls -la {}")" && nvim .'
 
 # interactive go to file and open nvim
-alias gtf='nvim $(fzf -m --preview="bat --colors=always {}")'
+alias gtf='nvim $(fzf -m --preview="bat --color=always {}")'

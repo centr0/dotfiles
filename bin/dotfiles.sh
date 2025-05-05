@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
-
 set -e
-
 # Define config base dir (fallback to ~/.config if not set)
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 DOTFILES_DIR="$HOME/src/dotfiles/config"
 DOTFILES_REPO="$HOME/src/dotfiles"
+LOCAL_SCRIPTS="$HOME/.local/scripts"
+
+# Add dry run flag
+DRY_RUN=false
 
 check_config_existence() {
   local folders=("${!1}")
@@ -35,6 +37,20 @@ check_config_existence() {
 
 copy_config_to_dotfiles() {
   local folders=("${!1}")
+
+  if $DRY_RUN; then
+    echo "[DRY RUN] Would create directory: $DOTFILES_DIR (if needed)"
+    for dir in "${folders[@]}"; do
+      if [ "$dir" == "tmux/tmux.conf" ]; then
+        echo "[DRY RUN] Would create directory: $DOTFILES_DIR/tmux (if needed)"
+        echo "[DRY RUN] Would copy: $CONFIG_DIR/$dir to $DOTFILES_DIR/tmux/"
+      else
+        echo "[DRY RUN] Would copy: $CONFIG_DIR/$dir to $DOTFILES_DIR/"
+      fi
+    done
+    return
+  fi
+
   mkdir -p "$DOTFILES_DIR"
   for dir in "${folders[@]}"; do
     echo "-- Pulling: Copying $CONFIG_DIR/$dir to $DOTFILES_DIR/$dir"
@@ -49,14 +65,30 @@ copy_config_to_dotfiles() {
 
 copy_dotfiles_to_config() {
   local folders=("${!1}")
-  mkdir -p "$CONFIG_DIR"
 
+  if $DRY_RUN; then
+    echo "[DRY RUN] Would create directory: $CONFIG_DIR (if needed)"
+    for dir in "${folders[@]}"; do
+      echo "[DRY RUN] Would copy: $DOTFILES_DIR/$dir to $CONFIG_DIR/$dir"
+    done
+    echo "[DRY RUN] Would create directory: $HOME/.local/scripts (if needed)"
+    echo "[DRY RUN] Would copy: $DOTFILES_DIR/bin/utils/*.sh to $LOCAL_SCRIPTS"
+    echo "[DRY RUN] Would check if tmux package manager is installed"
+    echo "[DRY RUN] Would clone tmux package manager from a git repository (if needed)"
+    echo "[DRY RUN] Would run: tmux source $HOME/.config/tmux/tmux.conf"
+    return
+  fi
+
+  mkdir -p "$CONFIG_DIR"
   for dir in "${folders[@]}"; do
     echo "-- Pushing: Copying $DOTFILES_DIR/$dir to $CONFIG_DIR/$dir"
     cp -r "$DOTFILES_DIR/$dir" "$CONFIG_DIR/$dir"
   done
-  echo "-- Installing tmux package manager..."
 
+  mkdir -p "$LOCAL_SCRIPTS"
+  cp "$DOTFILES_DIR/bin/utils/*.sh" "$LOCAL_SCRIPTS"
+
+  echo "-- Installing tmux package manager..."
   if [ -d "$HOME/.tmux/plugins/tpm" ]; then
     echo "-- The tmux package manager is already installed. Skipping..."
   else
@@ -64,16 +96,25 @@ copy_dotfiles_to_config() {
     echo "-- tmux package manager has been installed."
   fi
 
-  cp "$HOME/src/dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
-  tmux source "$HOME/.tmux.conf"
+  tmux source "$HOME/.config/tmux/tmux.conf"
   echo "-- Configuration for tmux has been installed."
   echo "-- Run <tmux-prefix> + I to install tmux plugins."
 }
 
 save_dotfiles_to_git() {
-  echo "-- Saving dotfiles to git..."
-  cd "$DOTFILES_REPO"
+  echo "-- Checking dotfiles git status..."
 
+  if $DRY_RUN; then
+    echo "[DRY RUN] Would change directory to: $DOTFILES_REPO"
+    echo "[DRY RUN] Would check git status"
+    echo "[DRY RUN] If changes exist, would run:"
+    echo "[DRY RUN]   git add ."
+    echo "[DRY RUN]   git commit -m \"dotfiles update\""
+    echo "[DRY RUN]   git push origin master"
+    return
+  fi
+
+  cd "$DOTFILES_REPO"
   git_status=$(git status)
   if [[ "$git_status" == *"nothing to commit, working tree clean"* ]]; then
     echo "-- No changes found in the repository. Exiting..."
@@ -111,7 +152,16 @@ to_copy=(
   "wofi"
   "tmux/tmux.conf"
 )
-# Parse args
+
+# Parse args and check for dry run flag
+for arg in "$@"; do
+  if [ "$arg" == "--dryrun" ]; then
+    DRY_RUN=true
+    echo "=== DRY RUN MODE: No changes will be made ==="
+  fi
+done
+
+# Process the main command argument
 case "$1" in
 --pull)
   check_config_existence required_folders[@] required_files[@]
@@ -124,7 +174,11 @@ case "$1" in
   save_dotfiles_to_git
   ;;
 *)
-  echo "Usage: dev [--pull | --push | --save]" >&2
+  echo "Usage: dev [--pull | --push | --save] [--dryrun]" >&2
   exit 1
   ;;
 esac
+
+if $DRY_RUN; then
+  echo "=== DRY RUN COMPLETE: No changes were made ==="
+fi
