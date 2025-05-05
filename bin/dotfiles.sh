@@ -2,8 +2,8 @@
 set -e
 # Define config base dir (fallback to ~/.config if not set)
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
-DOTFILES_DIR="$HOME/src/dev-env/dotfiles/config"
-DOTFILES_REPO="$HOME/src/dev-env/dotfiles"
+DOTFILES_CONFIG_DIR="$HOME/src/dev-env/dotfiles/config"
+DOTFILES_DIR="$HOME/src/dev-env/dotfiles"
 LOCAL_SCRIPTS="$HOME/.local/scripts"
 
 # Add dry run flag
@@ -39,27 +39,26 @@ copy_config_to_dotfiles() {
   local folders=("${!1}")
 
   if $DRY_RUN; then
-    echo "[DRY RUN] Would create directory: $DOTFILES_DIR (if needed)"
+    echo "[DRY RUN] Would create directory: $DOTFILES_CONFIG_DIR (if needed)"
     for dir in "${folders[@]}"; do
       if [ "$dir" == "tmux/tmux.conf" ]; then
-        echo "[DRY RUN] Would create directory: $DOTFILES_DIR/tmux (if needed)"
-        echo "[DRY RUN] Would copy: $CONFIG_DIR/$dir to $DOTFILES_DIR/tmux/"
+        echo "[DRY RUN] Would create directory: $DOTFILES_CONFIG_DIR/tmux (if needed)"
+        echo "[DRY RUN] Would copy: $CONFIG_DIR/$dir to $DOTFILES_CONFIG_DIR/tmux/"
       else
-        echo "[DRY RUN] Would copy: $CONFIG_DIR/$dir to $DOTFILES_DIR/"
+        echo "[DRY RUN] Would copy: $CONFIG_DIR/$dir to $DOTFILES_CONFIG_DIR/"
       fi
     done
+    echo "[DRY RUN] Would copy: $LOCAL_SCRIPTS/*.sh to $DOTFILES_DIR/bin/utils"
     return
   fi
 
-  mkdir -p "$DOTFILES_DIR"
+  cp "$LOCAL_SCRIPTS"/*.sh "$DOTFILES_DIR/bin/utils/"
+  echo "-- Pulling: Copying $LOCAL_SCRIPTS/*.sh to $DOTFILES_DIR/bin/utils"
+
+  mkdir -p "$DOTFILES_CONFIG_DIR"
   for dir in "${folders[@]}"; do
-    echo "-- Pulling: Copying $CONFIG_DIR/$dir to $DOTFILES_DIR/$dir"
-    if [ "$dir" == "tmux/tmux.conf" ]; then
-      mkdir -p "$DOTFILES_DIR/tmux"
-      cp -r "$CONFIG_DIR/$dir" "$DOTFILES_DIR/tmux/"
-    else
-      cp -r "$CONFIG_DIR/$dir" "$DOTFILES_DIR/"
-    fi
+    echo "-- Pulling: Copying $CONFIG_DIR/$dir to $DOTFILES_CONFIG_DIR/$dir"
+    cp -r "$CONFIG_DIR/$dir" "$DOTFILES_CONFIG_DIR/"
   done
 }
 
@@ -69,10 +68,10 @@ copy_dotfiles_to_config() {
   if $DRY_RUN; then
     echo "[DRY RUN] Would create directory: $CONFIG_DIR (if needed)"
     for dir in "${folders[@]}"; do
-      echo "[DRY RUN] Would copy: $DOTFILES_DIR/$dir to $CONFIG_DIR/$dir"
+      echo "[DRY RUN] Would copy: $DOTFILES_CONFIG_DIR/$dir to $CONFIG_DIR/$dir"
     done
     echo "[DRY RUN] Would create directory: $HOME/.local/scripts (if needed)"
-    echo "[DRY RUN] Would copy: $DOTFILES_DIR/bin/utils/*.sh to $LOCAL_SCRIPTS"
+    echo "[DRY RUN] Would copy: $DOTFILES_CONFIG_DIR/bin/utils/*.sh to $LOCAL_SCRIPTS"
     echo "[DRY RUN] Would check if tmux package manager is installed"
     echo "[DRY RUN] Would clone tmux package manager from a git repository (if needed)"
     echo "[DRY RUN] Would run: tmux source $HOME/.config/tmux/tmux.conf"
@@ -81,12 +80,19 @@ copy_dotfiles_to_config() {
 
   mkdir -p "$CONFIG_DIR"
   for dir in "${folders[@]}"; do
-    echo "-- Pushing: Copying $DOTFILES_DIR/$dir to $CONFIG_DIR/$dir"
-    cp -r "$DOTFILES_DIR/$dir" "$CONFIG_DIR/$dir"
+    if [ "$dir" == "tmux/tmux.conf" ]; then
+      mkdir -p "$DOTFILES_CONFIG_DIR/tmux"
+      cp "$DOTFILES_CONFIG_DIR/$dir" "$CONFIG_DIR/$dir"
+    else
+      cp -r "$DOTFILES_CONFIG_DIR/$dir" "$CONFIG_DIR/$dir"
+    fi
+
+    echo "-- Pushing: Copying $DOTFILES_CONFIG_DIR/$dir to $CONFIG_DIR/$dir"
   done
 
   mkdir -p "$LOCAL_SCRIPTS"
   cp "$DOTFILES_DIR/bin/utils/"*.sh "$LOCAL_SCRIPTS"
+  echo "-- Pushing: Copying $DOTFILES_DIR/bin/utils/*.sh to $LOCAL_SCRIPTS"
 
   echo "-- Installing tmux package manager..."
   if [ -d "$HOME/.tmux/plugins/tpm" ]; then
@@ -105,7 +111,7 @@ save_dotfiles_to_git() {
   echo "-- Checking dotfiles git status..."
 
   if $DRY_RUN; then
-    echo "[DRY RUN] Would change directory to: $DOTFILES_REPO"
+    echo "[DRY RUN] Would change directory to: $DOTFILES_DIR"
     echo "[DRY RUN] Would check git status"
     echo "[DRY RUN] If changes exist, would run:"
     echo "[DRY RUN]   git add ."
@@ -114,7 +120,7 @@ save_dotfiles_to_git() {
     return
   fi
 
-  cd "$DOTFILES_REPO"
+  cd "$DOTFILES_DIR"
   git_status=$(git status)
   if [[ "$git_status" == *"nothing to commit, working tree clean"* ]]; then
     echo "-- No changes found in the repository. Exiting..."
