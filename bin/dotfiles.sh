@@ -2,8 +2,8 @@
 set -e
 # Define config base dir (fallback to ~/.config if not set)
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
-DOTFILES_DIR="$HOME/src/dotfiles/config"
-DOTFILES_REPO="$HOME/src/dotfiles"
+DOTFILES_DIR="$HOME/src/dev-env/dotfiles/config"
+DOTFILES_REPO="$HOME/src/dev-env/dotfiles"
 LOCAL_SCRIPTS="$HOME/.local/scripts"
 
 # Add dry run flag
@@ -86,7 +86,7 @@ copy_dotfiles_to_config() {
   done
 
   mkdir -p "$LOCAL_SCRIPTS"
-  cp "$DOTFILES_DIR/bin/utils/*.sh" "$LOCAL_SCRIPTS"
+  cp "$DOTFILES_DIR/bin/utils/"*.sh "$LOCAL_SCRIPTS"
 
   echo "-- Installing tmux package manager..."
   if [ -d "$HOME/.tmux/plugins/tpm" ]; then

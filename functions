@@ -2,10 +2,10 @@
 
 # interface for hyprpaper
 sunset() {
-  $HOME/src/dotfiles/bin/utils/hyprsunset-interface.sh "$@"
+  $HOME/.local/scripts/hyprsunset-interface.sh "$@"
 }
 
 # dotfiles install, save etc
 dev() {
-  $HOME/src/dotfiles/bin/dotfiles.sh "$@"
+  $HOME/src/dev-env/dotfiles/bin/dotfiles.sh "$@"
 }
