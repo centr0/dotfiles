@@ -1,7 +1,7 @@
 #!/bin/bash
 SESSION_NAME="dev"
 
-# Check if the session already exists
+# Check if the session already exists already
 /usr/bin/tmux has-session -t $SESSION_NAME 2>/dev/null
 
 if [ $? -eq 0 ]; then

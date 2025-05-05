@@ -28,7 +28,6 @@
 # key= value
 # key =value
 # key = value
-#
 # # Any line beginning with a # is a comment. It's not possible to put
 # # a comment after a config option, since it would be interpreted as a
 # # part of the value. For example, this will have a value of "#123abc":
@@ -40,12 +39,11 @@
 # # Some config options have unique syntaxes for their value,
 # # which is explained in the docs for that config option.
 # # Just for example:
-# resize-overlay-duration = 4s 200ms
 background=#000000
 font-size=17
 window-padding-x = 10,10
 window-padding-y = 10,0
-command = /home/centro/src/dotfiles/bin/utils/ghostty-tmux.sh
+command = /home/centro/src/dev-env/dotfiles/bin/utils/ghostty-tmux.sh
 window-inherit-working-directory = true
 copy-on-select = true
 confirm-close-surface = false
