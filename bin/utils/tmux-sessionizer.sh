@@ -14,12 +14,19 @@ selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-  tmux new-session -s $selected_name -c $selected
+  tmux new-session -s $selected_name -n "dev" -c $selected \; \
+    new-window -t $selected_name -n "term" -c $selected \; \
+    new-window -t $selected_name -n "ext" -c $selected \; \
+    select-window -t "$selected_name":dev
   exit 0
 fi
 
 if ! tmux has-session -t=$selected_name 2>/dev/null; then
-  tmux new-session -ds $selected_name -c $selected
+  tmux new-session -ds $selected_name -n "dev" -c $selected \; \
+    new-window -t $selected_name -n "term" -c $selected \; \
+    new-window -t $selected_name -n "ext" -c $selected \; \
+    select-window -t "$selected_name":dev
+
 fi
 if [[ -z $TMUX ]]; then
   # Not in tmux, so attach to the session

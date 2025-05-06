@@ -56,13 +56,14 @@ function tcp { lsof -i tcp:$1; }
 code() { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*; }
 
 # change to random wallpaper
-alias chwp='$HOME/src/dotfiles/bin/utils/wallpaper-shuffle.sh'
+alias chwp='$HOME/.local/scripts/wallpaper-shuffle.sh'
 
 # reset wifi
-alias rewifi='$HOME/src/dotfiles/bin/utils/reset-wifi.sh'
+alias rewifi='$HOME/.local/scripts/reset-wifi.sh'
 
 # interactive find directory and change into it
-alias fd='cd "$(find . -type d -not -path "*/\.*" | fzf --preview="ls -la {}")"'
+alias fd='cd "$(find $HOME -type d | fzf --preview="ls -la {}")"'
+alias fh='cd "$(find . -type d | fzf --preview="ls -la {}")"'
 
 # interactive go to project/directory open nvim
 alias gtp='cd "$(find . -type d -not -path "*/\.*" | fzf --preview="ls -la {}")" && nvim .'
