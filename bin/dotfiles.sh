@@ -87,12 +87,27 @@ push() {
   echo "Pushing configurations complete."
 }
 
+save() {
+  cd $DOTFILES_DIR
+
+  git_status=$(git status)
+  if [[ "$git_status" == *"nothing to commit, working tree clean"* ]]; then
+    echo "-- No changes found in the repository. Exiting..."
+  else
+    git add .
+    git commit -m "dotfiles update"
+    git push origin master
+    echo "-- Update complete."
+  fi
+}
+
 main() {
   for arg in "$@"; do
     case "$arg" in
     --pull) pull ;;
     --push) push ;;
     --install) install ;;
+    --save) save ;;
     *)
       echo "Unknown option: $arg"
       echo "Usage: $0 [--pull] [--push] [--install]"

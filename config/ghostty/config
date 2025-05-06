@@ -43,7 +43,6 @@ background=#000000
 font-size=17
 window-padding-x = 10,10
 window-padding-y = 10,0
-command = /home/centro/src/dev-env/dotfiles/bin/utils/ghostty-tmux.sh
 window-inherit-working-directory = true
 copy-on-select = true
 confirm-close-surface = false
