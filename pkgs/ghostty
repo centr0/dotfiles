@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+echo ":: Starting ghostty install..."
+sudo pacman -S --noconfirm --needed --color=always ghostty
+mkdir -p $XDG_CONFIG_HOME/ghostty

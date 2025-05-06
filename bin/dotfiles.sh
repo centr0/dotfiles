@@ -7,6 +7,34 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 DOTFILES_CONFIG_DIR="$HOME/src/dev-env/dotfiles/config"
 DOTFILES_DIR="$HOME/src/dev-env/dotfiles"
 
+install() {
+  local pkgs_dir="$DOTFILES_DIR/pkgs"
+
+  if [[ ! -d "$pkgs_dir" ]]; then
+    echo "Error: Directory '$pkgs_dir' does not exist."
+    return 1
+  fi
+
+  if [[ -f "$pkgs_dir/run_first" ]]; then
+    bash "$pkgs_dir/run_first" || {
+      echo "Error: Failed to run $pkgs_dir/run_first"
+      return 1
+    }
+  fi
+
+  for script in "$pkgs_dir"/*; do
+    [[ -e "$script" ]] || continue
+    [[ "$(basename "$script")" == "run_first" ]] && continue
+
+    bash "$script" || {
+      echo "Error: Failed to run $script"
+      return 1
+    }
+  done
+
+  echo ":: Packages have been installed."
+}
+
 pull() {
   echo "=========================================="
   echo "Pulling ghostty configuration..."
@@ -64,9 +92,10 @@ main() {
     case "$arg" in
     --pull) pull ;;
     --push) push ;;
+    --install) install ;;
     *)
       echo "Unknown option: $arg"
-      echo "Usage: $0 [--pull] [--push]"
+      echo "Usage: $0 [--pull] [--push] [--install]"
       exit 1
       ;;
     esac

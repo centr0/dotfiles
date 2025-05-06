@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+echo ":: Starting hypr install..."
+mkdir -p $XDG_CONFIG_HOME/hypr
+sudo pacman -S --noconfirm --needed --color=always \
+  hyprland hypridle hyprlock hyprpaper xdg-desktop-portal-hyprland \
+  qt5-wayland qt6-wayland

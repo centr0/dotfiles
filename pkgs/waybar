@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+echo ":: Starting waybar install..."
+mkdir -p $XDG_CONFIG_HOME/waybar
+sudo pacman -S --noconfirm --needed --color=always waybar

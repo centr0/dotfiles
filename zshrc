@@ -5,3 +5,4 @@ source $DOTFILES/aliases
 source $DOTFILES/exports
 source $DOTFILES/paths
 source $DOTFILES/functions
+source $DOTFILES/binds

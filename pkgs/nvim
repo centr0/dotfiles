@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+echo ":: Starting neovim install..."
+sudo pacman -S --noconfirm --needed --color=always neovim
+if [[ ! -d "$XDG_CONFIG_HOME/nvim" ]]; then
+  git clone https://github.com/cparaiso/nvim.git $XDG_CONFIG_HOME/nvim
+else
+  echo " neovim is already installed"
+fi
