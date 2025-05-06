@@ -6,5 +6,5 @@ sudo pacman -S --noconfirm --needed --color=always \
   base-devel fzf jq man-db neofetch openssh python \
   ttf-font-awesome ttf-jetbrains-mono-nerd \
   wl-clipboard wlr-randr zathura zathura-pdf-poppler \
-  git rsync zsh slurp ripgrep bat btop \
-  grim fwupd wavemon
+  git rsync zsh slurp ripgrep bat btop firefox \
+  grim fwupd wavemon curl

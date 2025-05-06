@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+echo ":: Starting oh-my-zsh install..."
+if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  chsh -s $(which zsh)
+else
+  echo " oh-my-zsh already installed"
+fi
