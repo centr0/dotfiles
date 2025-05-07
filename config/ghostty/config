@@ -40,7 +40,7 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 background=#000000
-font-size=17
+font-size=19
 window-padding-x = 10,10
 window-padding-y = 10,0
 window-inherit-working-directory = true
