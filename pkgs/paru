@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+echo ":: Starting paru install..."
+if [[ ! -d "$HOME/.local/share/paru" ]]; then
+  git clone https://aur.archlinux.org/paru.git $HOME/.local/share/paru
+  cd $HOME/.local/share/paru
+  makepkg -si
+else
+  echo ":: paru already installed"
+fi

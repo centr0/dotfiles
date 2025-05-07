@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 sudo pacman -Syu
+echo ":: Creating necessary config and share directories..."
+mkdir -p $HOME/.local/share
+mkdir -p $HOME/.local/scripts
+mkdir -p $HOME/.config
 
 echo ":: Starting prerequisite package installs for dev environment..."
 sudo pacman -S --noconfirm --needed --color=always \
