@@ -3,6 +3,7 @@ margin: 0px;
 border: 5px solid rgba(0, 0, 0, 1.0);
 background-color: #282a36;
 font-family: JetBrainsMono Nerd Font;
+font-size: 22px;
 }
 
 #input {
@@ -11,7 +12,14 @@ border: none;
 color: #f8f8f2;
 background-color: #000;
 padding: 5px;
-font-size: 16px;
+}
+
+/* Styling the input field when focused */
+#input:focus {
+    border: 2px solid #33ccff;
+    background-color: #000000;
+    color: #ffffff;
+    box-shadow: none;
 }
 
 #inner-box {
@@ -47,6 +55,7 @@ color: #f8f8f2;
 
 #entry:selected {
 background-color: #33ccff;
+border-radius: 5px;
 }
 
 #entry:selected #text {
