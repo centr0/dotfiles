@@ -33,6 +33,7 @@ install() {
   done
 
   echo ":: Packages have been installed."
+  echo ":: Please run services.sh to enable required services."
 }
 
 pull() {
