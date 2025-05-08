@@ -48,3 +48,7 @@ copy-on-select = true
 confirm-close-surface = false
 theme = rose-pine
 adjust-cell-height = 2
+adjust-cell-width = 0
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig

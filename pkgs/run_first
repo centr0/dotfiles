@@ -11,4 +11,4 @@ sudo pacman -S --noconfirm --needed --color=always \
   ttf-font-awesome ttf-jetbrains-mono-nerd \
   wl-clipboard wlr-randr zathura zathura-pdf-poppler \
   git rsync zsh slurp ripgrep bat btop firefox \
-  grim fwupd wavemon curl
+  grim fwupd wavemon curl tree
