@@ -24,6 +24,8 @@ This will create user level systemd services for applications that need to run i
 Restart and confirm services are running on their correct slices with `systemctl --user status app-graphical.slice background-graphical.slice session.slice
 `.
 
-After these 3 steps are complete, the environment should be ready to go. Any changes done to the configuration files can be pulled into the dotfiles repository by executing `dev --pull` from the command line. To save and push changes to git, run `dev --save`.
+After these 3 steps are complete, the environment should be ready to go. Any changes done to the configuration files can be pulled into the dotfiles repository by executing `dev --pull` from the command line. 
+
+To save and push changes to git, run `dev --save`.
 
 Holla.
