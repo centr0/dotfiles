@@ -69,3 +69,5 @@ alias fh='cd "$(find . -type d | fzf --preview="tree -d -C {}")"'
 
 # interactive go to file and open nvim
 alias gtf='nvim $(fzf -m --preview="bat --color=always {}")'
+
+alias slsl='systemctl --user status app-graphical.slice background-graphical.slice session.slice'
