@@ -6,3 +6,6 @@ source $DOTFILES/exports
 source $DOTFILES/paths
 source $DOTFILES/functions
 source $DOTFILES/binds
+
+# required for nvm
+source /usr/share/nvm/init-nvm.sh
