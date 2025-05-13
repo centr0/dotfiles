@@ -73,3 +73,5 @@ alias gtf='nvim $(fzf -m --preview="bat --color=always {}")'
 alias slsl='systemctl --user status app-graphical.slice background-graphical.slice session.slice'
 
 alias ax3kmon='wavemon -i wlp196s0f3u1'
+
+alias bsync='$HOME/.local/scripts/blog-sync.sh'
