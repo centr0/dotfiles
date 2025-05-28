@@ -75,3 +75,4 @@ alias slsl='systemctl --user status app-graphical.slice background-graphical.sli
 alias ax3kmon='wavemon -i wlp196s0f3u1'
 
 alias bsync='$HOME/.local/scripts/blog-sync.sh'
+alias bdeploy='$HOME/.local/scripts/blog-deploy.sh'

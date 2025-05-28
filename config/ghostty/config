@@ -40,7 +40,7 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 background=#000000
-font-size=16
+font-size=17
 window-padding-x = 10,10
 window-padding-y = 10,0
 window-inherit-working-directory = true
@@ -54,3 +54,6 @@ font-feature = -liga
 font-feature = -dlig
 app-notifications = no-clipboard-copy
 font-style = normal
+cursor-style = block
+shell-integration-features = no-cursor
+cursor-style-blink = false
