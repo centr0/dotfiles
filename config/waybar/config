@@ -18,7 +18,8 @@
         "format": "<span style=\"italic\">{}</span>"
     },
     "hyprland/window": {
-        "separate-outputs": true
+        "format": "{class}",
+        "separate-outputs": true,
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ ",
@@ -93,11 +94,11 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interfac
-        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-wifi": "{signalStrength}%  ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-alt": "{essid} {ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
