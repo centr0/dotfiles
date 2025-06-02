@@ -1,4 +1,4 @@
-# Chris Paraiso's dotfiles
+# centr0's dotfiles
 
 ---
 
