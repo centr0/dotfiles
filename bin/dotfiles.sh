@@ -4,8 +4,8 @@ set -e
 
 # Define config base dir (fallback to ~/.config if not set)
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
-DOTFILES_CONFIG_DIR="$HOME/src/dev-env/dotfiles/config"
-DOTFILES_DIR="$HOME/src/dev-env/dotfiles"
+DOTFILES_CONFIG_DIR="$HOME/src/dotfiles/config"
+DOTFILES_DIR="$HOME/src/dotfiles"
 
 install() {
   local pkgs_dir="$DOTFILES_DIR/pkgs"

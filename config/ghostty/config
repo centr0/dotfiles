@@ -28,6 +28,7 @@
 # key= value
 # key =value
 # key = value
+#
 # # Any line beginning with a # is a comment. It's not possible to put
 # # a comment after a config option, since it would be interpreted as a
 # # part of the value. For example, this will have a value of "#123abc":
@@ -39,14 +40,15 @@
 # # Some config options have unique syntaxes for their value,
 # # which is explained in the docs for that config option.
 # # Just for example:
+# resize-overlay-duration = 4s 200ms
 background=#000000
-font-size=17
+background=#000000
+font-size=16
 window-padding-x = 10,10
 window-padding-y = 10,0
 window-inherit-working-directory = true
 copy-on-select = true
 confirm-close-surface = false
-theme = rose-pine
 adjust-cell-height = 2
 adjust-cell-width = 0
 font-feature = -calt
