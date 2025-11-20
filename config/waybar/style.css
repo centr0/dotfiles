@@ -1,41 +1,51 @@
 * {
   border: none;
-  border-radius: 5px;
   /* `ttf-font-awesome` is required to be installed for icons */
-  font-family: "JetBrainsMono Nerd Font", Helvetica, Arial, sans-serif;
-
+  font-family: "JetBrainsMono Nerd Font Propo", Helvetica, Arial, sans-serif;
   /* adjust font-size value to your liking: */
   font-size: 16px;
-  opacity: 0.96;
+  font-weight: 700;
   min-height: 0;
+  margin: 0;
+  padding: 0;
 }
 
 window#waybar {
-  color: #ffffff;
-  background: none;
+  color: #eee;
+  background: #1b1b27;
 }
 
 #workspaces {
-  margin-top: 10px;
+  transition: all 500ms ease-in-out;
+  background: none;
+  border-radius: 12px;
+  padding: 8px 10px;
 }
 
 #workspaces button {
-  color: #ffffff;
-  box-shadow: inset 0 -3px transparent;
-  border-radius: 0px;
-  background: #000000;
-  margin-left: 10px;
-  border-radius: 5px;
+  transition: all 200ms ease-in-out;
+  padding: 0 5px;
+  margin: 0 3px;
+  border-radius: 20px;
+  background-color: #ffffff;
 }
 
 #workspaces button:hover {
-  background: rgba(0, 0, 0, 0.9);
+}
+
+#workspaces button.active {
+  min-width: 50px;
+  background-color: #77dd77;
+}
+
+#workspaces button.empty {
+  opacity: 0.10;
 }
 
 #workspaces button.active, #workspaces button.visible {
-  color: #000;
-  background: #fff;
-  /*box-shadow: inset 0 -3px #ffffff;*/
+  min-width: 50px;
+  background-color: #77dd77;
+  opacity: 1;
 }
 
 #workspaces button.focused {
@@ -64,11 +74,8 @@ window#waybar {
 #idle_inhibitor,
 #mpd,
 #window {
-  background: #000000;
-  padding: 6px 12px;
-  color: #ffffff;
-  margin-top: 10px;
-  margin-right: 10px;
+  color: #eee;
+  margin-right: 20px;
 }
 
 #tray {
@@ -87,13 +94,13 @@ window#waybar {
 
 
 #battery.charging {
-  color: #ffffff;
+  color: #eee;
   background-color: #000000;
 }
 
 @keyframes blink {
   to {
-    background-color: #ffffff;
+    background-color: #eee;
     color: #000000;
   }
 }
