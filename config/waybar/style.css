@@ -39,7 +39,7 @@ window#waybar {
 }
 
 #workspaces button.empty {
-  opacity: 0.10;
+  opacity: 0.25;
 }
 
 #workspaces button.active, #workspaces button.visible {

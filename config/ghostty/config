@@ -43,7 +43,7 @@
 # resize-overlay-duration = 4s 200ms
 background=#000000
 background=#000000
-font-size=16
+font-size=22
 window-padding-x = 10,10
 window-padding-y = 10,0
 window-inherit-working-directory = true
