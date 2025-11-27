@@ -11,11 +11,10 @@
     "network",
     "pulseaudio",
     "cpu",
-    "memory",
-    "battery"
+    "memory"
   ],
   "hyprland/workspaces": {
-    "format": "",
+    "format": "", // intentionally left blank
     "format-icons": {
       "active": "",
       "default": "",
