@@ -78,19 +78,46 @@ dev --save
 
 ---
 
-## Key Aliases
+## Aliases
 
 | Alias | Command |
 |-------|---------|
-| `dev` | `./bin/dotfiles.sh` |
-| `reload` | `source ~/.zshrc` |
-| `l`, `ll`, `la` | `ls` variants |
-| `..`, `...`, `....` | Quick cd up |
-| `gs`, `ga`, `gc`, `gp` | Git commands |
+| `vim` | nvim |
+| `venv` | Create and activate virtual environment |
+| `reload` | source ~/.zshrc |
+| `l` | ls -F |
+| `la` | ls -FA |
+| `ll` | ls -l |
+| `lh` | ls -lAh |
+| `..` | cd .. |
+| `...` | cd ../.. |
+| `....` | cd ../../.. |
+| `.....` | cd ../../../.. |
+| `d` | cd ~/Desktop |
+| `cdl` | cd to dir and list contents |
+| `gs` | git status |
+| `ga` | git add . |
+| `gd` | git ls-files --deleted \| xargs git rm |
+| `gc` | git commit |
+| `gl` | git log --pretty="%H %s" |
+| `gp` | git push |
+| `gf` | git difftool |
+| `gr` | cd to Git repo root |
+| `f` | find -x * -name |
+| `gosrc` | cd ~/src |
+| `cwd` | Copy working directory to clipboard |
+| `cfn` | Copy filename to clipboard |
+| `ip` | Copy IP address to clipboard |
+| `unpack` | tar -xvzf |
+| `tcp` | List processes on port |
+| `code` | Open VSCode |
+| `chwp` | Change wallpaper |
+| `rewifi` | Reset wifi |
 | `fd` | Fuzzy find directory |
 | `fh` | Fuzzy find directory (from here) |
 | `gtf` | Fuzzy find file + open in nvim |
 | `slsl` | Check systemd slice status |
+| `ax3kmon` | wavemon wifi monitor |
 
 ---
 
