@@ -2,35 +2,115 @@
 
 ---
 
-## Assumptions
+## System
 
-- Arch Linux
-- Hyprland (window manager)
-- Thinkpad T14 Gen 5 AMD
-- Reclaimed virginity
-- Fresh install
-
-## Usage
+- **OS**: Linux
+- **Desktop**: Hyprland (Wayland compositor)
+- **Shell**: Zsh + Oh My Zsh
+- **Terminal**: Ghostty
+- **Bar**: Waybar
+- **Launcher**: Wofi
+- **Multiplexer**: Tmux
+- **Editor**: Neovim
 
 ---
 
-1. On a fresh install:
-`./dotfiles/bin/dotfiles.sh --install`
-This will install all required packages for the environment. Zsh and oh-my-zsh will be installed and the shell will be changed to zsh.
-Relogin or restart then me on to step 2.
+## Quick Start
 
-2. Push configurations to required directories:
-`dev --push`
-`dev` is just an alias to `/dotfiles/bin/dotfiles.sh`. `--push` will push configurations to their respective directories.
+```bash
+# 1. Install packages (run once on fresh system)
+./bin/dotfiles.sh --install
 
-3. Setup systemd services:
-`./dotfiles/bin/services.sh`
-This will create user level systemd services for applications that need to run in the background. Separating from creating child processes under the compositor.
-Restart and confirm services are running on their correct slices with `systemctl --user status app-graphical.slice background-graphical.slice session.slice
-`.
+# 2. Push configs to $HOME/.config/
+dev --push
 
-After these 3 steps are complete, the environment should be ready to go. Any changes done to the configuration files can be pulled into the dotfiles repository by executing `dev --pull` from the command line.
+# 3. Setup systemd user services
+./bin/services.sh
 
-To save and push changes to git, run `dev --save`.
+# 4. Pull changes from $HOME back to repo
+dev --pull
 
-Holla..
+# 5. Save and push to git
+dev --save
+```
+
+---
+
+## Structure
+
+```
+.
+├── bin/
+│   ├── dotfiles.sh      # Main CLI: --install, --push, --pull, --save
+│   ├── services.sh      # Setup systemd user services
+│   └── utils/           # Local scripts (wallpaper, wifi, etc.)
+├── config/
+│   ├── ghostty/         # Terminal config
+│   ├── hypr/            # Window manager config
+│   ├── keyboard/        # Keyboard layouts
+│   ├── mako/            # Notification daemon
+│   ├── tmux/            # Terminal multiplexer
+│   ├── vscode/          # Editor settings
+│   ├── waybar/          # Status bar
+│   └── wofi/            # App launcher
+├── aliases              # Shell aliases
+├── binds                # Keybindings
+├── exports              # Environment variables
+├── functions            # Shell functions
+├── paths                # PATH additions
+├── zshrc                # Zsh config (sources above files)
+└── zprofile             # Login shell config
+```
+
+---
+
+## Packages
+
+**Core/Base**: base-devel, fzf, jq, man-db, neofetch, openssh, python, ttf-font-awesome, ttf-jetbrains-mono-nerd, wl-clipboard, wlr-randr, zathura, zathura-pdf-poppler, git, rsync, zsh, slurp, ripgrep, bat, btop, firefox, grim, fwupd, wavemon, curl, tree
+
+**Hyprland**: hyprland, hypridle, hyprlock, hyprpaper, xdg-desktop-portal-hyprland, qt5-wayland, qt6-wayland, uwsm
+
+**Terminal/Shell**: ghostty, tmux, oh-my-zsh
+
+**UI/Launcher**: waybar, wofi, mako, nautilus
+
+**Tools**: neovim, discord, 1password, paru
+
+---
+
+## Key Aliases
+
+| Alias | Command |
+|-------|---------|
+| `dev` | `./bin/dotfiles.sh` |
+| `reload` | `source ~/.zshrc` |
+| `l`, `ll`, `la` | `ls` variants |
+| `..`, `...`, `....` | Quick cd up |
+| `gs`, `ga`, `gc`, `gp` | Git commands |
+| `fd` | Fuzzy find directory |
+| `fh` | Fuzzy find directory (from here) |
+| `gtf` | Fuzzy find file + open in nvim |
+| `slsl` | Check systemd slice status |
+
+---
+
+## Environment Variables
+
+- `XDG_CONFIG_HOME` → `$HOME/.config`
+- `WAYLAND_DISPLAY` → `wayland-1`
+- `QT_QPA_PLATFORM` → `wayland`
+- `GDK_BACKEND` → `wayland`
+- `SDL_VIDEODRIVER` → `wayland`
+- `MOZ_ENABLE_WAYLAND` → `1`
+
+---
+
+## Services
+
+The `services.sh` script sets up user-level systemd services separated into slices:
+
+- `app-graphical.slice` - Graphical applications
+- `background-graphical.slice` - Background graphical services
+- `session.slice` - Session services
+
+---

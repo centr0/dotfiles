@@ -5,3 +5,4 @@ PATH=$PATH:$HOME/.cargo/bin
 PATH=$PATH:$HOME/go/bin
 PATH=$PATH:$HOME/.local/scripts
 PATH=$PATH:$HOME/.local/bin
+PATH=$PATH:$HOME/.opencode/bin
