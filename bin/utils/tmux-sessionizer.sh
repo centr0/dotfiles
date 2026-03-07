@@ -16,7 +16,8 @@ tmux_running=$(pgrep tmux)
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
   tmux new-session -s $selected_name -n "dev" -c $selected \; \
     new-window -t $selected_name -n "term" -c $selected \; \
-    new-window -t $selected_name -n "ext" -c $selected \; \
+    new-window -t $selected_name -n "opencode" -c $selected \; \
+    send-keys -t "$selected_name:opencode" "opencode --port" C-m \; \
     select-window -t "$selected_name":dev
   exit 0
 fi
@@ -24,7 +25,8 @@ fi
 if ! tmux has-session -t=$selected_name 2>/dev/null; then
   tmux new-session -ds $selected_name -n "dev" -c $selected \; \
     new-window -t $selected_name -n "term" -c $selected \; \
-    new-window -t $selected_name -n "ext" -c $selected \; \
+    new-window -t $selected_name -n "opencode" -c $selected \; \
+    send-keys -t "$selected_name:opencode" "opencode --port" C-m \; \
     select-window -t "$selected_name":dev
 
 fi

@@ -42,14 +42,14 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 # background=#000000
-background=#191724
-font-size=19
-window-padding-x = 10,10
+background=#111019
+font-size=20
+window-padding-x = 10,0
 window-padding-y = 10,0
 window-inherit-working-directory = true
 copy-on-select = true
 confirm-close-surface = false
-adjust-cell-height = 3
+adjust-cell-height = 2
 adjust-cell-width = 0
 font-feature = -calt
 font-feature = -liga

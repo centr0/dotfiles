@@ -7,5 +7,12 @@ sunset() {
 
 # dotfiles install, save etc
 dev() {
-  $HOME/src/dev-env/dotfiles/bin/dotfiles.sh "$@"
+  $HOME/src/dotfiles/bin/dotfiles.sh "$@"
+}
+
+# venv for tmux. sends command to all panes
+tmv() {
+  tmux list-panes -s -F '#{pane_id}' | while read pane; do
+    tmux send-keys -t "$pane" "venv" Enter
+  done
 }
