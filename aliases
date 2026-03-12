@@ -5,22 +5,8 @@ alias vim='nvim'
 #venv
 alias venv='$HOME/src/dotfiles/bin/utils/venv.sh && source .venv/bin/activate'
 
-# source
-alias reload='source ~/.zshrc'
-
-# ls
-alias l='ls -F'
-alias la='ls -FA'
-alias ll='ls -l'
-alias lh='ls -lAh'
-
 # cd
 alias ..='cd ..'
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias d='cd ~/Desktop'
-function cdl { cd $1 && ls; }
 
 # git
 alias gs='git status'
@@ -33,24 +19,9 @@ alias gf='git difftool'
 # `cd` to Git repo root
 alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 
-# search
-alias f='find -x * -name'
-
-# dev and src
-alias gosrc='cd ~/src'
-
 # copy working directory & filename
 alias cwd='echo -n `pwd` | pbcopy'
 alias cfn='echo -n $(basename `pwd`) | pbcopy'
-
-# copy ip address to clipboard
-function ip { ifconfig en1 | ruby -ne '$_.match(/inet\s((\d|\.)+)/) { print $1 }' | pbcopy; }
-
-# unpack tar file
-alias unpack='tar -xvzf'
-
-# list out processes running on a specific port
-function tcp { lsof -i tcp:$1; }
 
 # visual studio code
 code() { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*; }
@@ -69,10 +40,5 @@ alias fh='cd "$(find . -type d | fzf --preview="tree -d -C {}")"'
 
 # interactive go to file and open nvim
 alias gtf='nvim $(fzf -m --preview="bat --color=always {}")'
-
 alias slsl='systemctl --user status app-graphical.slice background-graphical.slice session.slice'
-
 alias ax3kmon='wavemon -i wlp196s0f3u1'
-
-alias bsync='$HOME/.local/scripts/blog-sync.sh'
-alias bdeploy='$HOME/.local/scripts/blog-deploy.sh'

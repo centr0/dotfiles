@@ -6,3 +6,4 @@ source $DOTFILES/exports
 source $DOTFILES/paths
 source $DOTFILES/functions
 source $DOTFILES/binds
+eval "$(uv generate-shell-completion bash)"
