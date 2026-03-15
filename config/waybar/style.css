@@ -12,7 +12,7 @@
 
 window#waybar {
   color: #eee;
-  background: #1b1b27;
+  background: #191724;
 }
 
 #workspaces {
@@ -35,7 +35,7 @@ window#waybar {
 
 #workspaces button.active {
   min-width: 50px;
-  background-color: #77dd77;
+  background-color: #31748f;
 }
 
 #workspaces button.empty {
@@ -44,7 +44,7 @@ window#waybar {
 
 #workspaces button.active, #workspaces button.visible {
   min-width: 50px;
-  background-color: #77dd77;
+  background-color: #31748f;
   opacity: 1;
 }
 
