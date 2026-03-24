@@ -23,8 +23,8 @@ alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup 
 alias cwd='echo -n `pwd` | pbcopy'
 alias cfn='echo -n $(basename `pwd`) | pbcopy'
 
-# visual studio code
-code() { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $*; }
+# vscode
+alias code='code --reuse-window'
 
 # change to random wallpaper
 alias chwp='$HOME/.local/scripts/wallpaper-shuffle.sh'

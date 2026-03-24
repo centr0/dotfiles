@@ -11,8 +11,40 @@
 }
 
 window#waybar {
-  color: #eee;
-  background: #191724;
+  color: #a9b1d6;
+  background: #1a1b26;
+}
+
+menu {
+  background: #1a1b26;
+  color: #a9b1d6;
+  border: 1px solid #3b4261;
+  border-radius: 14px;
+  padding: 8px;
+}
+
+menuitem {
+  color: #a9b1d6;
+  background: transparent;
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin: 2px 0;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+menuitem:hover {
+  background: #24283b;
+  color: #9ece6a;
+}
+
+menuitem:disabled {
+  color: #565f89;
+}
+
+separator {
+  background: #3b4261;
+  min-height: 1px;
+  margin: 8px 4px;
 }
 
 #workspaces {
@@ -27,24 +59,26 @@ window#waybar {
   padding: 0 5px;
   margin: 0 3px;
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: #a9b1d6;
 }
 
 #workspaces button:hover {
+  background: inherit;
+  box-shadow: inherit;
 }
 
 #workspaces button.active {
   min-width: 50px;
-  background-color: #31748f;
+  background-color: #9ece6a;
 }
 
 #workspaces button.empty {
-  opacity: 0.25;
+  background-color: #26233a;
 }
 
 #workspaces button.active, #workspaces button.visible {
   min-width: 50px;
-  background-color: #31748f;
+  background-color: #9ece6a;
   opacity: 1;
 }
 
@@ -73,9 +107,15 @@ window#waybar {
 #mode,
 #idle_inhibitor,
 #mpd,
+#mpris,
+#custom-power,
 #window {
-  color: #eee;
+  color: #a9b1d6;
   margin-right: 20px;
+}
+
+#custom-power {
+  font-size: 14px;
 }
 
 #tray {
