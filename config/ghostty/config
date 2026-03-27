@@ -44,8 +44,8 @@
 # background=#000000
 background=#111019
 # background=#191724
-# font-family = "IBM Plex Mono"
-font-size=16
+font-family = "IBM Plex Mono"
+font-size=18
 window-padding-x = 0,0
 window-padding-y = 0,0
 window-padding-balance=true
