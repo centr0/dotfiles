@@ -119,7 +119,16 @@ separator {
 }
 
 #tray {
-  margin-left: 40px;
+  margin-left: 12px;
+  margin-right: 20px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
