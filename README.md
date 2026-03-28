@@ -1,143 +1,174 @@
 # centr0's dotfiles
 
----
+Fedora-first dotfiles and desktop bootstrap for a Hyprland workstation.
 
-## System
+## What this repo does
 
-- **OS**: Linux
-- **Desktop**: Hyprland (Wayland compositor)
-- **Shell**: Zsh + Oh My Zsh
-- **Terminal**: Ghostty
-- **Bar**: Waybar
-- **Launcher**: Wofi
-- **Multiplexer**: Tmux
-- **Editor**: Neovim
+- Bootstraps a Fedora machine with the packages needed for this setup.
+- Syncs shared config from this repo into `~/.config` and related paths.
+- Seeds local override files for monitor and workspace layout.
+- Installs and enables `systemd --user` services for the Hyprland session.
 
----
+## What this repo does not do
 
-## Quick Start
+- It does not install Discord.
+- It does not install 1Password.
+- It does not install Spotify.
+- It does not clone the Neovim config repo.
+
+Neovim itself is installed by bootstrap. Its config is managed manually from a separate repo.
+
+## Core workflow
+
+### Fresh machine
 
 ```bash
-# 1. Install packages (run once on fresh system)
-./bin/dotfiles.sh --install
-
-# 2. Push configs to $HOME/.config/
-dev --push
-
-# 3. Setup systemd user services
-./bin/services.sh
-
-# 4. Pull changes from $HOME back to repo
-dev --pull
-
-# 5. Save and push to git
-dev --save
+./bin/bootstrap.sh
 ```
 
----
+That will:
 
-## Structure
+- verify Fedora
+- install packages from `packages/*.txt`
+- sync shared config into your home directory
+- copy local override example files when missing
+- reload and enable `systemd --user` services
 
-```
-.
-├── bin/
-│   ├── dotfiles.sh      # Main CLI: --install, --push, --pull, --save
-│   ├── services.sh      # Setup systemd user services
-│   └── utils/           # Local scripts (wallpaper, wifi, etc.)
-├── config/
-│   ├── ghostty/         # Terminal config
-│   ├── hypr/            # Window manager config
-│   ├── keyboard/        # Keyboard layouts
-│   ├── mako/            # Notification daemon
-│   ├── tmux/            # Terminal multiplexer
-│   ├── vscode/          # Editor settings
-│   ├── waybar/          # Status bar
-│   └── wofi/            # App launcher
-├── aliases              # Shell aliases
-├── binds                # Keybindings
-├── exports              # Environment variables
-├── functions            # Shell functions
-├── paths                # PATH additions
-├── zshrc                # Zsh config (sources above files)
-└── zprofile             # Login shell config
+### Preview config changes
+
+```bash
+./bin/sync.sh check
 ```
 
----
+This does a dry run of repo -> home sync with `rsync --delete`.
 
-## Packages
+### Push repo changes to your live config
 
-**Core/Base**: base-devel, fzf, jq, man-db, neofetch, openssh, python, ttf-font-awesome, ttf-jetbrains-mono-nerd, wl-clipboard, wlr-randr, zathura, zathura-pdf-poppler, git, rsync, zsh, slurp, ripgrep, bat, btop, firefox, grim, fwupd, wavemon, curl, tree
+```bash
+./bin/sync.sh push
+```
 
-**Hyprland**: hyprland, hypridle, hyprlock, hyprpaper, xdg-desktop-portal-hyprland, qt5-wayland, qt6-wayland, uwsm
+This syncs repo-managed files into your home directory and removes stale managed files from the destination.
 
-**Terminal/Shell**: ghostty, tmux, oh-my-zsh
+### Pull live config changes back into the repo
 
-**UI/Launcher**: waybar, wofi, mako, nautilus
+```bash
+./bin/sync.sh pull
+```
 
-**Tools**: neovim, discord, 1password, paru
+Use this only when you intentionally changed live files under `~/.config` and want those changes brought back into the repo.
 
----
+## Repo-managed vs local state
 
-## Aliases
+This repo is the source of truth for shared config.
 
-| Alias | Command |
-|-------|---------|
-| `vim` | nvim |
-| `venv` | Create and activate virtual environment |
-| `reload` | source ~/.zshrc |
-| `l` | ls -F |
-| `la` | ls -FA |
-| `ll` | ls -l |
-| `lh` | ls -lAh |
-| `..` | cd .. |
-| `...` | cd ../.. |
-| `....` | cd ../../.. |
-| `.....` | cd ../../../.. |
-| `d` | cd ~/Desktop |
-| `cdl` | cd to dir and list contents |
-| `gs` | git status |
-| `ga` | git add . |
-| `gd` | git ls-files --deleted \| xargs git rm |
-| `gc` | git commit |
-| `gl` | git log --pretty="%H %s" |
-| `gp` | git push |
-| `gf` | git difftool |
-| `gr` | cd to Git repo root |
-| `f` | find -x * -name |
-| `gosrc` | cd ~/src |
-| `cwd` | Copy working directory to clipboard |
-| `cfn` | Copy filename to clipboard |
-| `ip` | Copy IP address to clipboard |
-| `unpack` | tar -xvzf |
-| `tcp` | List processes on port |
-| `code` | Open VSCode |
-| `chwp` | Change wallpaper |
-| `rewifi` | Reset wifi |
-| `fd` | Fuzzy find directory |
-| `fh` | Fuzzy find directory (from here) |
-| `gtf` | Fuzzy find file + open in nvim |
-| `slsl` | Check systemd slice status |
-| `ax3kmon` | wavemon wifi monitor |
+Sync uses `rsync --delete`, so files removed from the repo are also removed from managed destinations.
 
----
+Some files are intentionally treated as machine-local state and are preserved during sync:
 
-## Environment Variables
+- `~/.config/hypr/monitors.local.conf`
+- `~/.config/hypr/workspaces.local.conf`
+- `~/.config/hypr/hyprpaper.conf`
+- `~/.config/waybar/config.local.jsonc`
 
-- `XDG_CONFIG_HOME` → `$HOME/.config`
-- `WAYLAND_DISPLAY` → `wayland-1`
-- `QT_QPA_PLATFORM` → `wayland`
-- `GDK_BACKEND` → `wayland`
-- `SDL_VIDEODRIVER` → `wayland`
-- `MOZ_ENABLE_WAYLAND` → `1`
+## Local overrides
 
----
+Bootstrap seeds these files automatically if they do not already exist:
+
+- `~/.config/hypr/monitors.local.conf`
+- `~/.config/hypr/workspaces.local.conf`
+- `~/.config/waybar/config.local.jsonc`
+
+The source examples live in the repo:
+
+- `config/hypr/monitors.local.conf.example`
+- `config/hypr/workspaces.local.conf.example`
+- `config/waybar/config.local.jsonc.example`
+
+Those example files include inline instructions, but the short version is:
+
+```bash
+hyprctl monitors
+```
+
+Then:
+
+- copy the monitor names exactly as reported
+- set your preferred resolution, refresh, position, and scale in `~/.config/hypr/monitors.local.conf`
+- map workspaces to those same monitor names in `~/.config/hypr/workspaces.local.conf`
+- optionally set monitor-specific persistent workspaces in `~/.config/waybar/config.local.jsonc`
 
 ## Services
 
-The `services.sh` script sets up user-level systemd services separated into slices:
+This setup uses `systemd --user` for session services.
 
-- `app-graphical.slice` - Graphical applications
-- `background-graphical.slice` - Background graphical services
-- `session.slice` - Session services
+Managed services:
 
----
+- `hypridle.service`
+- `hyprpaper.service`
+- `hyprsunset.service`
+- `mako.service`
+- `waybar.service`
+- `hyprpolkitagent.service`
+
+Repo-managed user units live in `config/systemd/user/` and are synced into `~/.config/systemd/user/`.
+
+If you need to reload and re-enable services manually:
+
+```bash
+./bin/services.sh
+```
+
+## Structure
+
+```text
+.
+├── bin/
+│   ├── bootstrap.sh
+│   ├── dotfiles.sh
+│   ├── services.sh
+│   ├── sync.sh
+│   └── utils/
+├── config/
+│   ├── ghostty/
+│   ├── hypr/
+│   ├── mako/
+│   ├── systemd/user/
+│   ├── tmux/
+│   ├── waybar/
+│   └── wofi/
+├── packages/
+│   ├── base.txt
+│   ├── desktop-core.txt
+│   ├── dev-core.txt
+│   └── hyprland.txt
+├── aliases
+├── binds
+├── exports
+├── functions
+├── paths
+├── zprofile
+└── zshrc
+```
+
+## Package manifests
+
+- `packages/base.txt` - core CLI and system tools
+- `packages/hyprland.txt` - Hyprland session packages
+- `packages/desktop-core.txt` - desktop apps and utilities used by shared config
+- `packages/dev-core.txt` - core dev tools, including Neovim
+
+## Shell notes
+
+- `zprofile` starts the session through UWSM.
+- `zshrc` sources installed shell files from `~/.config`.
+- Neovim aliases are kept in place because Neovim is installed by bootstrap.
+
+## Manual installs
+
+After bootstrap, install these manually if you want them:
+
+- Neovim config repo into `~/.config/nvim`
+- Discord
+- 1Password
+- Spotify
