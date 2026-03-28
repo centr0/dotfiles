@@ -2,11 +2,11 @@ export SRC="$HOME/src"
 export DOTFILES_REPO="${DOTFILES_REPO:-$SRC/dotfiles}"
 
 for shell_file in \
-  "$HOME/.config/exports" \
-  "$HOME/.config/paths" \
-  "$HOME/.config/aliases" \
-  "$HOME/.config/functions" \
-  "$HOME/.config/binds"; do
+  "$DOTFILES_REPO/exports" \
+  "$DOTFILES_REPO/paths" \
+  "$DOTFILES_REPO/aliases" \
+  "$DOTFILES_REPO/functions" \
+  "$DOTFILES_REPO/binds"; do
   [[ -f "$shell_file" ]] && source "$shell_file"
 done
 
