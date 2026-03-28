@@ -1,0 +1,12 @@
+[Unit]
+Description=Hyprsunset color temperature daemon
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/env hyprsunset
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target

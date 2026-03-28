@@ -64,6 +64,7 @@ sync_file() {
 }
 
 sync_push() {
+  sync_dir "$1" "$REPO_DIR/config/systemd/user" "$CONFIG_DIR/systemd/user"
   sync_dir "$1" "$REPO_DIR/config/ghostty" "$CONFIG_DIR/ghostty"
   sync_dir "$1" "$REPO_DIR/config/hypr" "$CONFIG_DIR/hypr" \
     "monitors.local.conf" \
@@ -80,6 +81,7 @@ sync_push() {
 }
 
 sync_pull() {
+  sync_dir pull "$CONFIG_DIR/systemd/user" "$REPO_DIR/config/systemd/user"
   sync_dir pull "$CONFIG_DIR/ghostty" "$REPO_DIR/config/ghostty"
   sync_dir pull "$CONFIG_DIR/hypr" "$REPO_DIR/config/hypr" \
     "monitors.local.conf" \

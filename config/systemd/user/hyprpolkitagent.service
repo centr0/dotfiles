@@ -1,0 +1,12 @@
+[Unit]
+Description=Hyprland polkit agent
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/env hyprpolkitagent
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target

@@ -14,6 +14,15 @@ PACKAGE_MANIFESTS=(
   "dev-core.txt"
 )
 
+USER_SERVICES=(
+  hypridle.service
+  hyprpaper.service
+  hyprsunset.service
+  mako.service
+  waybar.service
+  hyprpolkitagent.service
+)
+
 require_fedora() {
   if [[ ! -r /etc/os-release ]]; then
     echo "Unable to detect operating system: /etc/os-release not found."
@@ -100,6 +109,14 @@ run_sync_if_available() {
   fi
 }
 
+setup_user_services() {
+  echo "Reloading user services..."
+  systemctl --user daemon-reload
+
+  echo "Enabling Hyprland session services..."
+  systemctl --user enable --now "${USER_SERVICES[@]}"
+}
+
 print_manual_steps() {
   cat <<'EOF'
 
@@ -115,7 +132,7 @@ Manual follow-up:
 - Install Spotify manually.
 
 Still pending in this repo:
-- systemd --user service setup
+- README rewrite
 EOF
 }
 
@@ -125,6 +142,7 @@ main() {
   install_packages
   run_sync_if_available
   seed_local_overrides
+  setup_user_services
   print_manual_steps
 }
 
