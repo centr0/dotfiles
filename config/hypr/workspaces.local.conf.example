@@ -1,0 +1,24 @@
+# Local workspace-to-monitor overrides for this machine.
+#
+# Bootstrap copies this file to:
+#   ~/.config/hypr/workspaces.local.conf
+#
+# How to fill this in:
+# 1. First configure ~/.config/hypr/monitors.local.conf.
+# 2. Use the same monitor names here that `hyprctl monitors` reports.
+# 3. Assign workspaces to the monitors you want them to open on.
+# 4. Delete any example lines you do not need.
+#
+# Format:
+# workspace = <number>, monitor:<name>, default:true
+#
+# Example:
+# workspace = 1, monitor:DP-1, default:true
+# workspace = 5, monitor:DP-2, default:true
+
+# workspace = 1, monitor:DP-1, default:true
+# workspace = 2, monitor:DP-1, default:true
+# workspace = 3, monitor:DP-1, default:true
+# workspace = 4, monitor:DP-1, default:true
+# workspace = 5, monitor:DP-2, default:true
+# workspace = 6, monitor:DP-2, default:true

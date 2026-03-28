@@ -43,6 +43,22 @@ create_directories() {
     "$HOME/.local/scripts"
 }
 
+seed_local_overrides() {
+  local source_file dest_file
+
+  for source_file in \
+    "$REPO_DIR/config/hypr/monitors.local.conf.example:$CONFIG_DIR/hypr/monitors.local.conf" \
+    "$REPO_DIR/config/hypr/workspaces.local.conf.example:$CONFIG_DIR/hypr/workspaces.local.conf" \
+    "$REPO_DIR/config/waybar/config.local.jsonc.example:$CONFIG_DIR/waybar/config.local.jsonc"; do
+    dest_file="${source_file#*:}"
+    source_file="${source_file%%:*}"
+
+    if [[ ! -f "$dest_file" ]]; then
+      install -m 644 "$source_file" "$dest_file"
+    fi
+  done
+}
+
 read_manifest_packages() {
   local manifest_path="$1"
 
@@ -90,14 +106,15 @@ print_manual_steps() {
 Bootstrap completed.
 
 Manual follow-up:
+- Edit ~/.config/hypr/monitors.local.conf for this machine.
+- Edit ~/.config/hypr/workspaces.local.conf for this machine.
+- Edit ~/.config/waybar/config.local.jsonc if you want monitor-specific workspace persistence.
 - Clone your Neovim config repo into ~/.config/nvim when you are ready.
 - Install Discord manually.
 - Install 1Password manually.
 - Install Spotify manually.
 
 Still pending in this repo:
-- Automatic local override seeding
-- Sync workflow via bin/sync.sh
 - systemd --user service setup
 EOF
 }
@@ -107,6 +124,7 @@ main() {
   create_directories
   install_packages
   run_sync_if_available
+  seed_local_overrides
   print_manual_steps
 }
 

@@ -1,0 +1,32 @@
+// Local Waybar overrides for this machine.
+//
+// Bootstrap copies this file to:
+//   ~/.config/waybar/config.local.jsonc
+//
+// This file is optional. Use it when you want monitor-specific persistent
+// workspace mappings in Waybar.
+//
+// How to fill this in:
+// 1. Run: hyprctl monitors
+// 2. Copy the monitor names exactly as shown in the output.
+// 3. Put those names in the persistent-workspaces map below.
+// 4. Adjust the workspace numbers for your layout.
+//
+// Example:
+// {
+//   "hyprland/workspaces": {
+//     "persistent-workspaces": {
+//       "DP-1": [1, 2, 3, 4],
+//       "DP-2": [5, 6]
+//     }
+//   }
+// }
+
+{
+  "hyprland/workspaces": {
+    "persistent-workspaces": {
+      "DP-1": [1, 2, 3, 4],
+      "DP-2": [5, 6]
+    }
+  }
+}

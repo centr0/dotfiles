@@ -1,0 +1,22 @@
+# Local monitor overrides for this machine.
+#
+# Bootstrap copies this file to:
+#   ~/.config/hypr/monitors.local.conf
+#
+# How to fill this in:
+# 1. Run: hyprctl monitors
+# 2. Copy the monitor names exactly as shown in the output.
+# 3. Replace the example lines below with your preferred resolution, refresh,
+#    position, and scale.
+# 4. Keep one monitor line per display.
+# 5. Delete any lines you do not need.
+#
+# Format:
+# monitor = <name>, <resolution>@<refresh>, <x>x<y>, <scale>
+#
+# Example:
+# monitor = DP-1, 2560x1440@164.06Hz, 2560x0, 1
+# monitor = DP-2, 2560x1440@164.06Hz, 0x0, 1
+
+# monitor = DP-1, 2560x1440@164.06Hz, 2560x0, 1
+# monitor = DP-2, 2560x1440@164.06Hz, 0x0, 1
