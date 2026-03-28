@@ -1,40 +1,11 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-# Define config base dir (fallback to ~/.config if not set)
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
-DOTFILES_CONFIG_DIR="$HOME/src/dotfiles/config"
-DOTFILES_DIR="$HOME/src/dotfiles"
-
-install() {
-  local pkgs_dir="$DOTFILES_DIR/pkgs"
-
-  if [[ ! -d "$pkgs_dir" ]]; then
-    echo "Error: Directory '$pkgs_dir' does not exist."
-    return 1
-  fi
-
-  if [[ -f "$pkgs_dir/run_first" ]]; then
-    bash "$pkgs_dir/run_first" || {
-      echo "Error: Failed to run $pkgs_dir/run_first"
-      return 1
-    }
-  fi
-
-  for script in "$pkgs_dir"/*; do
-    [[ -e "$script" ]] || continue
-    [[ "$(basename "$script")" == "run_first" ]] && continue
-
-    bash "$script" || {
-      echo "Error: Failed to run $script"
-      return 1
-    }
-  done
-
-  echo ":: Packages have been installed."
-  echo ":: Please run services.sh to enable required services."
-}
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+DOTFILES_CONFIG_DIR="$DOTFILES_DIR/config"
 
 pull() {
   echo "=========================================="
@@ -88,32 +59,29 @@ push() {
   echo "Pushing configurations complete."
 }
 
-save() {
-  cd $DOTFILES_DIR
-
-  git_status=$(git status)
-  if [[ "$git_status" == *"nothing to commit, working tree clean"* ]]; then
-    echo "-- No changes found in the repository. Exiting..."
-  else
-    git add .
-    git commit -m "dotfiles update"
-    git push origin master
-    echo "-- Update complete."
-  fi
-}
-
 main() {
+  if [[ $# -eq 0 ]]; then
+    echo "Usage: $0 [--pull] [--push]"
+    return 1
+  fi
+
   for arg in "$@"; do
     case "$arg" in
-    --pull) pull ;;
-    --push) push ;;
-    --install) install ;;
-    --save) save ;;
-    *)
-      echo "Unknown option: $arg"
-      echo "Usage: $0 [--pull] [--push] [--install]"
-      exit 1
-      ;;
+      --pull) pull ;;
+      --push) push ;;
+      --install)
+        echo "Install workflow moved out of dotfiles.sh. Use bin/bootstrap.sh once it is in place."
+        return 1
+        ;;
+      --save)
+        echo "Save workflow was removed. Use git commands explicitly from the repo."
+        return 1
+        ;;
+      *)
+        echo "Unknown option: $arg"
+        echo "Usage: $0 [--pull] [--push]"
+        return 1
+        ;;
     esac
   done
 }

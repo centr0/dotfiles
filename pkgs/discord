@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-echo ":: Starting Discord install..."
-sudo pacman -S --noconfirm --needed --color=always discord
