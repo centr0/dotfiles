@@ -1,0 +1,15 @@
+# Core CLI and system tools
+bat
+btop
+curl
+fzf
+git
+jq
+neofetch
+openssh-clients
+python3
+ripgrep
+rsync
+tree
+wl-clipboard
+zsh

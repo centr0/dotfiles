@@ -1,0 +1,12 @@
+# Desktop applications and utilities used by shared config
+brightnessctl
+firefox
+ghostty
+grim
+mako
+nautilus
+pavucontrol
+playerctl
+slurp
+waybar
+wofi

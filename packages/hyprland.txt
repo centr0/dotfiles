@@ -1,0 +1,9 @@
+# Hyprland session packages
+hypridle
+hyprland
+hyprlock
+hyprpaper
+hyprpolkitagent
+hyprsunset
+uwsm
+xdg-desktop-portal-hyprland
