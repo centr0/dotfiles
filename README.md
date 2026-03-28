@@ -5,6 +5,7 @@ Fedora-first dotfiles and desktop bootstrap for a Hyprland workstation.
 ## What this repo does
 
 - Bootstraps a Fedora machine with the packages needed for this setup.
+- Installs or updates `oh-my-zsh` in `~/.oh-my-zsh`.
 - Syncs shared config from this repo into `~/.config` and related paths.
 - Seeds local override files for monitor and workspace layout.
 - Installs and enables `systemd --user` services for the Hyprland session.
@@ -30,6 +31,7 @@ That will:
 
 - verify Fedora
 - install packages from `packages/*.txt`
+- install or update `oh-my-zsh`
 - sync shared config into your home directory
 - copy local override example files when missing
 - reload and enable `systemd --user` services
@@ -161,7 +163,8 @@ If you need to reload and re-enable services manually:
 ## Shell notes
 
 - `zprofile` starts the session through UWSM.
-- `zshrc` sources installed shell files from `~/.config`.
+- `~/.zshrc` is synced from this repo.
+- `oh-my-zsh` is installed in `~/.oh-my-zsh` by bootstrap and is not synced into the repo.
 - Neovim aliases are kept in place because Neovim is installed by bootstrap.
 
 ## Manual installs

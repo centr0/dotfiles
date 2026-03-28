@@ -23,6 +23,20 @@ USER_SERVICES=(
   hyprpolkitagent.service
 )
 
+install_oh_my_zsh() {
+  local omz_dir="$HOME/.oh-my-zsh"
+
+  if [[ -d "$omz_dir/.git" ]]; then
+    echo "Updating oh-my-zsh..."
+    git -C "$omz_dir" pull --ff-only
+  elif [[ -e "$omz_dir" ]]; then
+    echo "Skipping oh-my-zsh install: $omz_dir exists but is not a git checkout."
+  else
+    echo "Installing oh-my-zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+  fi
+}
+
 require_fedora() {
   if [[ ! -r /etc/os-release ]]; then
     echo "Unable to detect operating system: /etc/os-release not found."
@@ -137,6 +151,7 @@ main() {
   require_fedora
   create_directories
   install_packages
+  install_oh_my_zsh
   run_sync_if_available
   seed_local_overrides
   setup_user_services

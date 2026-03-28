@@ -17,7 +17,7 @@ else
         ;;
       esac
 
-      printf '%s\t%s\n' "$label at" "$dir"t
+      printf '%s\t%s\n' "$label" "$dir"
     done |
     fzf --delimiter=$'\t' --with-nth=1 |
     cut -f2)
