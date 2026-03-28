@@ -1,18 +1,33 @@
-#!/usr/bin/env bash
-
-# interface for hyprpaper
 sunset() {
-  $HOME/.local/scripts/hyprsunset-interface.sh "$@"
+  hyprsunset-interface.sh "$@"
 }
 
-# dotfiles install, save etc
 dev() {
-  $HOME/src/dotfiles/bin/dotfiles.sh "$@"
+  "$DOTFILES_REPO/bin/dotfiles.sh" "$@"
 }
 
-# venv for tmux. sends command to all panes
+bootstrap() {
+  "$DOTFILES_REPO/bin/bootstrap.sh" "$@"
+}
+
+syncdot() {
+  "$DOTFILES_REPO/bin/sync.sh" "$@"
+}
+
 tmv() {
   tmux list-panes -s -F '#{pane_id}' | while read pane; do
     tmux send-keys -t "$pane" "venv" Enter
   done
+}
+
+ax3kmon() {
+  local wifi_if
+  wifi_if=$(nmcli -t -f DEVICE,TYPE,STATE device status 2>/dev/null | awk -F: '$2 == "wifi" && $3 != "unavailable" {print $1; exit}')
+
+  if [[ -z "$wifi_if" ]]; then
+    echo "No active Wi-Fi interface found."
+    return 1
+  fi
+
+  wavemon -i "$wifi_if"
 }

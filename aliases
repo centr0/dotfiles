@@ -1,44 +1,28 @@
-#!/usr/bin/env bash
-# nvim
 alias vim='nvim'
 
-#venv
-alias venv='$HOME/src/dotfiles/bin/utils/venv.sh && source .venv/bin/activate'
+alias venv='venv.sh && source .venv/bin/activate'
 
-# cd
 alias ..='cd ..'
 
-# git
 alias gs='git status'
 alias ga='git add .'
-alias gd='git ls-files --deleted | xargs git rm'
+alias gd='git ls-files --deleted | xargs -r git rm'
 alias gc='git commit'
 alias gl='git log --pretty="%H %s"'
 alias gp='git push'
 alias gf='git difftool'
-# `cd` to Git repo root
-alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
+alias gr='cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)"'
 
-# copy working directory & filename
-alias cwd='echo -n `pwd` | pbcopy'
-alias cfn='echo -n $(basename `pwd`) | pbcopy'
+alias cwd='pwd | tr -d "\n" | wl-copy'
+alias cfn='basename "$PWD" | tr -d "\n" | wl-copy'
 
-# vscode
 alias code='code --reuse-window'
 
-# change to random wallpaper
-alias chwp='$HOME/.local/scripts/wallpaper-shuffle.sh'
+alias chwp='wallpaper-shuffle.sh'
 
-# reset wifi
-alias rewifi='$HOME/.local/scripts/reset-wifi.sh'
-
-# interactive find directory and change into it
 alias fd='cd "$(find $HOME -type d | fzf --preview="tree -d -C {}")"'
 
-# interactive find (from here) directory and change to it
 alias fh='cd "$(find . -type d | fzf --preview="tree -d -C {}")"'
 
-# interactive go to file and open nvim
 alias gtf='nvim $(fzf -m --preview="bat --color=always {}")'
-alias slsl='systemctl --user status app-graphical.slice background-graphical.slice session.slice'
-alias ax3kmon='wavemon -i wlp196s0f3u1'
+alias slsl='systemctl --user status hypridle.service hyprpaper.service hyprsunset.service mako.service waybar.service hyprpolkitagent.service'
