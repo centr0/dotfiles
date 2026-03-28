@@ -1,8 +1,16 @@
 {
+  "include": [
+    "~/.config/waybar/config.local.jsonc"
+  ],
   "position": "top", // Waybar position (top|bottom|left|right)
   "height": 34, // Waybar height (to be removed for auto height)
-  "modules-left": ["hyprland/workspaces", "tray"],
-  "modules-center": ["clock"],
+  "modules-left": [
+    "hyprland/workspaces",
+    "tray"
+  ],
+  "modules-center": [
+    "clock"
+  ],
   "modules-right": [
     "mpris",
     "network",
@@ -86,11 +94,18 @@
   "temperature": {
     "critical-threshold": 80,
     "format": "{temperatureC}°C {icon}",
-    "format-icons": ["", "", ""],
+    "format-icons": [
+      "",
+      "",
+      ""
+    ],
   },
   "backlight": {
     "format": "{percent}% ",
-    "format-icons": ["", ""],
+    "format-icons": [
+      "",
+      ""
+    ],
   },
   "battery": {
     "states": {
