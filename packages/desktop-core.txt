@@ -3,10 +3,12 @@ brightnessctl
 firefox
 ghostty
 grim
+hyprshot
 mako
 nautilus
 pavucontrol
 playerctl
 slurp
+wavemon
 waybar
 wofi

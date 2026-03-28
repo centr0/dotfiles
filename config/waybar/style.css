@@ -1,6 +1,6 @@
 * {
   border: none;
-  /* `ttf-font-awesome` is required to be installed for icons */
+  /* Install a Font Awesome package with the needed icons */
   font-family: "JetBrainsMono Nerd Font Propo", Helvetica, Arial, sans-serif;
   /* adjust font-size value to your liking: */
   font-size: 16px;

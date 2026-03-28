@@ -130,9 +130,6 @@ Manual follow-up:
 - Install Discord manually.
 - Install 1Password manually.
 - Install Spotify manually.
-
-Still pending in this repo:
-- README rewrite
 EOF
 }
 

@@ -70,7 +70,7 @@ main() {
       --pull) pull ;;
       --push) push ;;
       --install)
-        echo "Install workflow moved out of dotfiles.sh. Use bin/bootstrap.sh once it is in place."
+        echo "Install workflow moved out of dotfiles.sh. Use bin/bootstrap.sh instead."
         return 1
         ;;
       --save)
