@@ -1,4 +1,4 @@
-# centr0's dotfiles
+# centr0's dotfiles :)
 
 Fedora-first dotfiles and desktop bootstrap for a Hyprland workstation.
 
