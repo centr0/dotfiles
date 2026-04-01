@@ -8,6 +8,7 @@ path=(
   "$HOME/.local/scripts"
   "$HOME/.local/bin"
   "$HOME/.opencode/bin"
+  "$HOME/.local/opt/zig"
   $path
 )
 
