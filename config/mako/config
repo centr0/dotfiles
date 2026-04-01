@@ -1,26 +1,29 @@
 sort=-time
 layer=overlay
-background-color=#000000
+anchor=top-right
+margin=20
+background-color=#1a1b26
+text-color=#c0caf5
 width=400
 height=110
 border-size=1
-border-color=#77dd77
-border-radius=0
+border-color=#7aa2f7
+border-radius=4
 icons=1
 max-icon-size=64
 default-timeout=10000
 ignore-timeout=1
-font=JetBrainsMono Nerd Font 10
+font=JetBrainsMono Nerd Font 18
 padding=20
 
 [urgency=low]
-border-color=#77dd77
+border-color=#9ece6a
 
 [urgency=normal]
-border-color=#77dd77
+border-color=#7aa2f7
 
 [urgency=high]
-border-color=#ff0000
+border-color=#f7768e
 default-timeout=0
 
 [category=mpd]

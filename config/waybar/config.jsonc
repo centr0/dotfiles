@@ -13,6 +13,7 @@
   ],
   "modules-right": [
     "mpris",
+    "custom/pomodoro",
     "network",
     "pulseaudio",
     "cpu",
@@ -150,6 +151,24 @@
     "on-click": "playerctl play-pause",
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous",
+  },
+  "custom/pomodoro": {
+    "exec": "$HOME/.local/scripts/pomodoro.sh waybar",
+    "return-type": "json",
+    "interval": 10,
+    "tooltip": false,
+    "format": "{}",
+    "signal": 8,
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/pomodoro_menu.xml",
+    "menu-actions": {
+      "start30": "$HOME/.local/scripts/pomodoro.sh start 30",
+      "start45": "$HOME/.local/scripts/pomodoro.sh start 45",
+      "start60": "$HOME/.local/scripts/pomodoro.sh start 60",
+      "cancel": "$HOME/.local/scripts/pomodoro.sh cancel",
+      "stats": "$HOME/.local/scripts/pomodoro.sh stats",
+      "status": "$HOME/.local/scripts/pomodoro.sh status"
+    }
   },
   "custom/power": {
     "format": "⏻",

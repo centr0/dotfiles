@@ -109,9 +109,14 @@ separator {
 #mpd,
 #mpris,
 #custom-power,
+#custom-pomodoro,
 #window {
   color: #a9b1d6;
   margin-right: 20px;
+}
+
+#custom-pomodoro.active {
+  color: #9ece6a;
 }
 
 #custom-power {

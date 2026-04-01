@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+      <object class="GtkMenuItem" id="start30">
+        <property name="label">󰔛  30 min</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="start45">
+        <property name="label">󰔛  45 min</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="start60">
+        <property name="label">󰔛  60 min</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="delimiter1"/>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="cancel">
+        <property name="label">󰜺  Cancel timer</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="stats">
+        <property name="label">󰄬  Stats</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="status">
+        <property name="label">󰋼  Status</property>
+      </object>
+    </child>
+  </object>
+</interface>
