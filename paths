@@ -9,6 +9,8 @@ path=(
   "$HOME/.local/bin"
   "$HOME/.opencode/bin"
   "$HOME/.local/opt/zig"
+  "$HOME/.local/opt/exercism"
+
   $path
 )
 

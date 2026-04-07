@@ -42,22 +42,35 @@ esac
 selected_name=$(printf '%s' "$selected_name" | tr . _)
 tmux_running=$(pgrep tmux)
 
+create_session() {
+  local dev_pane agent_pane dev_left agent_left
+
+  tmux new-session -ds "$selected_name" -n "dev" -c "$selected"
+  dev_pane=$(tmux display-message -p -t "$selected_name:dev" '#{pane_id}')
+  agent_pane=$(tmux split-window -h -P -F '#{pane_id}' -t "$selected_name:dev" -c "$selected")
+
+  dev_left=$(tmux display-message -p -t "$dev_pane" '#{pane_left}')
+  agent_left=$(tmux display-message -p -t "$agent_pane" '#{pane_left}')
+
+  # Keep the original shell pane on the left and the new agent pane on the right.
+  if (( dev_left > agent_left )); then
+    tmux swap-pane -s "$dev_pane" -t "$agent_pane"
+  fi
+
+  tmux send-keys -t "$agent_pane" "opencode --port" C-m
+  tmux select-pane -t "$dev_pane"
+  tmux new-window -t "$selected_name" -n "term" -c "$selected"
+  tmux select-window -t "$selected_name:dev"
+}
+
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-  tmux new-session -s $selected_name -n "dev" -c $selected \; \
-    new-window -t $selected_name -n "term" -c $selected \; \
-    new-window -t $selected_name -n "agent" -c $selected \; \
-    send-keys -t "$selected_name:agent" "opencode --port" C-m \; \
-    select-window -t "$selected_name":dev
+  create_session
+  tmux attach-session -t "$selected_name"
   exit 0
 fi
 
 if ! tmux has-session -t=$selected_name 2>/dev/null; then
-  tmux new-session -ds $selected_name -n "dev" -c $selected \; \
-    new-window -t $selected_name -n "term" -c $selected \; \
-    new-window -t $selected_name -n "agent" -c $selected \; \
-    send-keys -t "$selected_name:agent" "opencode --port" C-m \; \
-    select-window -t "$selected_name":dev
-
+  create_session
 fi
 if [[ -z $TMUX ]]; then
   # Not in tmux, so attach to the session
