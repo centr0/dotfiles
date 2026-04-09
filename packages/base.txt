@@ -5,7 +5,6 @@ curl
 fzf
 git
 jq
-neofetch
 openssh-clients
 python3
 ripgrep
