@@ -1,0 +1,66 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-k ctrl-s": null,
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space d a": "workspace::CloseAllDocks",
+      "space f f": "file_finder::Toggle",
+      "space c c": "agent::ToggleFocus",
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "pane::CloseOtherItems",
+      "space e": "pane::RevealInProjectPanel",
+      "space t f": "zed::OpenTasks", // open task file
+      "space t s": "task::Spawn", // open task list
+      "space t r": "task::Rerun",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "space c s": "agent::AddSelectionToThread",
+    },
+  },
+  {
+    "context": "Editor && edit_prediction && edit_prediction_mode == eager",
+    "bindings": {
+      "shift-ctrl-w": "editor::AcceptNextWordEditPrediction", // accept by word
+      "shift-tab": "editor::AcceptNextLineEditPrediction", // accept by line
+      "shift-ctrl-a": "editor::AcceptEditPrediction", // accept all
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-k": "workspace::ActivatePaneUp",
+    },
+  },
+  {
+    "context": "Editor && edit_prediction && edit_prediction_mode == eager && !showing_completions",
+    "unbind": {
+      "tab": "editor::AcceptEditPrediction",
+    },
+  },
+  {
+    // when agent input is focused and vim in normal mode
+    "context": "AcpThread > Editor && vim_mode == normal",
+    "bindings": {},
+  },
+]

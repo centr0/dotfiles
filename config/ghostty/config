@@ -18,6 +18,4 @@ app-notifications = no-clipboard-copy
 cursor-style = block
 shell-integration-features = no-cursor
 cursor-style-blink = false
-custom-shader = shaders/cursor_warp.glsl
-custom-shader-animation = always
 theme = TokyoNight Night

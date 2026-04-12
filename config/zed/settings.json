@@ -1,0 +1,137 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "soft_wrap": "preferred_line_length",
+  "show_wrap_guides": false,
+  "cursor_shape": "block",
+  "agent_ui_font_size": 18.0,
+  "git": {
+    "inline_blame": {
+      "enabled": false,
+    },
+  },
+  "theme_overrides": {
+    "Modest Dark": {
+      "text": "#b6b6b6",
+      "editor.active_line.background": "#12161F",
+      "editor.wrap_guide": "#1e242e",
+      "editor.active_wrap_guide": "#00000000",
+      "editor.document_highlight.read_background": "#00000000",
+      "editor.document_highlight.write_background": "#00000000",
+      "syntax": {
+        "function": {
+          "font_style": "normal",
+        },
+        "keyword": {
+          "font_style": "normal",
+        },
+      },
+      "players": [
+        {
+          "cursor": "#b6b6b6",
+        },
+      ],
+    },
+  },
+  "tabs": {
+    "file_icons": true,
+    "show_close_button": "hover",
+  },
+  "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
+    "show_tab_bar_buttons": false,
+    "show_nav_history_buttons": false,
+    "show": true,
+  },
+  "title_bar": {
+    "show_user_picture": false,
+    "show_user_menu": false,
+    "show_sign_in": false,
+    "show_onboarding_banner": false,
+    "show_project_items": true,
+    "show_branch_icon": true,
+    "show_branch_name": true,
+  },
+  "status_bar": {
+    "active_language_button": false,
+  },
+  "tasks": {
+    "enabled": true,
+  },
+  "show_whitespaces": "selection",
+  "indent_guides": {
+    "background_coloring": "disabled",
+    "coloring": "fixed",
+    "active_line_width": 1,
+    "line_width": 1,
+    "enabled": true,
+  },
+  "preferred_line_length": 88,
+  "vim": {
+    "toggle_relative_line_numbers": true,
+  },
+  "toolbar": {
+    "agent_review": true,
+    "selections_menu": true,
+    "quick_actions": false,
+    "breadcrumbs": false,
+  },
+  "scrollbar": {
+    "show": "never",
+  },
+  "inline_code_actions": false,
+  "gutter": {
+    "min_line_number_digits": 3,
+    "folds": true,
+    "runnables": true,
+  },
+  "relative_line_numbers": "enabled",
+  "selection_highlight": true,
+  "text_rendering_mode": "platform_default",
+  "agent_buffer_font_size": 16.0,
+  "buffer_font_weight": 350.0,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "edit_predictions": {
+    "provider": "copilot",
+  },
+  "agent_servers": {
+    "opencode": {
+      "type": "registry",
+      "favorite_config_option_values": {
+        "model": ["openai/gpt-5.4"],
+      },
+    },
+    "codex-acp": {
+      "type": "registry",
+    },
+  },
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5.4",
+      "enable_thinking": false,
+      "effort": "high",
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "ui_font_family": "IBM Plex Sans",
+  "icon_theme": "Material Icon Theme",
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "vim_mode": true,
+  "ui_font_size": 18.0,
+  "buffer_font_size": 18.0,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Ayu Dark",
+  },
+}
