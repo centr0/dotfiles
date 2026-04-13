@@ -1,40 +1,22 @@
 # centr0's dotfiles :)
 
-Fedora-first dotfiles and desktop bootstrap for a Hyprland workstation.
+Shared desktop and shell config for a Hyprland workstation.
 
 ## What this repo does
 
-- Bootstraps a Fedora machine with the packages needed for this setup.
-- Installs or updates `oh-my-zsh` in `~/.oh-my-zsh`.
 - Syncs shared config from this repo into `~/.config` and related paths.
-- Seeds local override files for monitor and workspace layout.
-- Installs and enables `systemd --user` services for the Hyprland session.
+- Pulls intentional live config changes back into the repo.
+- Preserves machine-local monitor, workspace, and Waybar override files.
+- Syncs managed `systemd --user` units and provides a helper to enable them.
 
 ## What this repo does not do
 
-- It does not install Discord.
-- It does not install 1Password.
-- It does not install Spotify.
+- It does not install packages.
+- It does not install `oh-my-zsh`.
+- It does not seed local override files automatically.
 - It does not clone the Neovim config repo.
 
-Neovim itself is installed by bootstrap. Its config is managed manually from a separate repo.
-
 ## Core workflow
-
-### Fresh machine
-
-```bash
-./bin/bootstrap.sh
-```
-
-That will:
-
-- verify Fedora
-- install packages from `packages/*.txt`
-- install or update `oh-my-zsh`
-- sync shared config into your home directory
-- copy local override example files when missing
-- reload and enable `systemd --user` services
 
 ### Preview config changes
 
@@ -58,7 +40,29 @@ This syncs repo-managed files into your home directory and removes stale managed
 ./bin/sync.sh pull
 ```
 
-Use this only when you intentionally changed live files under `~/.config` and want those changes brought back into the repo.
+Use this only when you intentionally changed live files and want those changes brought back into the repo.
+
+### Reload and enable managed user services
+
+```bash
+./bin/services.sh
+```
+
+## Sync coverage
+
+`bin/sync.sh` manages:
+
+- `config/ghostty` <-> `~/.config/ghostty`
+- `config/hypr` <-> `~/.config/hypr`
+- `config/mako` <-> `~/.config/mako`
+- `config/systemd/user/*.service` <-> `~/.config/systemd/user/*.service`
+- `config/tmux/tmux.conf` <-> `~/.config/tmux/tmux.conf`
+- `config/waybar` <-> `~/.config/waybar`
+- `config/wezterm/wezterm.lua` <-> `~/.wezterm.lua`
+- `config/wofi` <-> `~/.config/wofi`
+- `config/zed` <-> `~/.config/zed`
+- `bin/utils/` <-> `~/.local/scripts/`
+- `zshrc` <-> `~/.zshrc`
 
 ## Repo-managed vs local state
 
@@ -74,12 +78,6 @@ Some files are intentionally treated as machine-local state and are preserved du
 - `~/.config/waybar/config.local.jsonc`
 
 ## Local overrides
-
-Bootstrap seeds these files automatically if they do not already exist:
-
-- `~/.config/hypr/monitors.local.conf`
-- `~/.config/hypr/workspaces.local.conf`
-- `~/.config/waybar/config.local.jsonc`
 
 The source examples live in the repo:
 
@@ -110,24 +108,17 @@ Managed services:
 - `hyprpaper.service`
 - `hyprsunset.service`
 - `mako.service`
+- `tmux.service`
 - `waybar.service`
 - `hyprpolkitagent.service`
 
 Repo-managed user units live in `config/systemd/user/` and are synced into `~/.config/systemd/user/`.
-
-If you need to reload and re-enable services manually:
-
-```bash
-./bin/services.sh
-```
 
 ## Structure
 
 ```text
 .
 ├── bin/
-│   ├── bootstrap.sh
-│   ├── dotfiles.sh
 │   ├── services.sh
 │   ├── sync.sh
 │   └── utils/
@@ -138,7 +129,9 @@ If you need to reload and re-enable services manually:
 │   ├── systemd/user/
 │   ├── tmux/
 │   ├── waybar/
-│   └── wofi/
+│   ├── wezterm/
+│   ├── wofi/
+│   └── zed/
 ├── packages/
 │   ├── base.txt
 │   ├── desktop-core.txt
@@ -149,27 +142,26 @@ If you need to reload and re-enable services manually:
 ├── exports
 ├── functions
 ├── paths
-├── zprofile
 └── zshrc
 ```
 
 ## Package manifests
 
+These files are kept as reference only. No repo script installs them.
+
 - `packages/base.txt` - core CLI and system tools
 - `packages/hyprland.txt` - Hyprland session packages
 - `packages/desktop-core.txt` - desktop apps and utilities used by shared config
-- `packages/dev-core.txt` - core dev tools, including Neovim
+- `packages/dev-core.txt` - core dev tools, including Neovim and tmux
 
 ## Shell notes
 
-- `zprofile` starts the session through UWSM.
 - `~/.zshrc` is synced from this repo.
-- `oh-my-zsh` is installed in `~/.oh-my-zsh` by bootstrap and is not synced into the repo.
-- Neovim aliases are kept in place because Neovim is installed by bootstrap.
+- `~/.zshrc` sources `exports`, `paths`, `aliases`, `functions`, and `binds` directly from the repo clone.
 
 ## Manual installs
 
-After bootstrap, install these manually if you want them:
+Install these yourself if you want them:
 
 - Neovim config repo into `~/.config/nvim`
 - Discord

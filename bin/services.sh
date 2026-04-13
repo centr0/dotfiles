@@ -7,6 +7,7 @@ USER_SERVICES=(
   hyprpaper.service
   hyprsunset.service
   mako.service
+  tmux.service
   waybar.service
   hyprpolkitagent.service
 )

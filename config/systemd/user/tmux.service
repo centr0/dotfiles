@@ -7,7 +7,7 @@ Type=forking
 Environment=DISPLAY=:0
 ExecStart=/bin/tmux new-session -d
 
-ExecStop=/home/centro/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
+ExecStop=/usr/bin/env bash -lc 'if [[ -x "$HOME/.config/tmux/plugins/tmux-resurrect/scripts/save.sh" ]]; then "$HOME/.config/tmux/plugins/tmux-resurrect/scripts/save.sh"; fi'
 ExecStop=/bin/tmux kill-server
 KillMode=control-group
 

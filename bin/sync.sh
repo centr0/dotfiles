@@ -14,6 +14,7 @@ USER_SERVICE_FILES=(
   hyprpaper.service
   hyprsunset.service
   mako.service
+  tmux.service
   waybar.service
   hyprpolkitagent.service
 )
@@ -116,11 +117,12 @@ sync_push() {
   sync_dir "$1" "$REPO_DIR/config/mako" "$CONFIG_DIR/mako"
   sync_dir "$1" "$REPO_DIR/config/waybar" "$CONFIG_DIR/waybar" "config.local.jsonc"
   sync_dir "$1" "$REPO_DIR/config/wofi" "$CONFIG_DIR/wofi"
+  sync_dir "$1" "$REPO_DIR/config/zed" "$CONFIG_DIR/zed"
   run_rsync_nodelete "$1" "$REPO_DIR/bin/utils/" "$HOME/.local/scripts/"
   sync_file "$1" "$REPO_DIR/config/tmux/tmux.conf" "$CONFIG_DIR/tmux/tmux.conf"
+  sync_file "$1" "$REPO_DIR/config/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
 
   sync_file "$1" "$REPO_DIR/zshrc" "$HOME/.zshrc"
-  sync_file "$1" "$REPO_DIR/zprofile" "$HOME/.zprofile"
 }
 
 sync_pull() {
@@ -133,11 +135,12 @@ sync_pull() {
   sync_dir pull "$CONFIG_DIR/mako" "$REPO_DIR/config/mako"
   sync_dir pull "$CONFIG_DIR/waybar" "$REPO_DIR/config/waybar" "config.local.jsonc"
   sync_dir pull "$CONFIG_DIR/wofi" "$REPO_DIR/config/wofi"
+  sync_dir pull "$CONFIG_DIR/zed" "$REPO_DIR/config/zed"
   run_rsync_nodelete pull "$HOME/.local/scripts/" "$REPO_DIR/bin/utils/"
   sync_file pull "$CONFIG_DIR/tmux/tmux.conf" "$REPO_DIR/config/tmux/tmux.conf"
+  sync_file pull "$HOME/.wezterm.lua" "$REPO_DIR/config/wezterm/wezterm.lua"
 
   sync_file pull "$HOME/.zshrc" "$REPO_DIR/zshrc"
-  sync_file pull "$HOME/.zprofile" "$REPO_DIR/zprofile"
 }
 
 main() {

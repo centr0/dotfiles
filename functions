@@ -3,14 +3,6 @@ sunset() {
 }
 
 dev() {
-  "$DOTFILES_REPO/bin/dotfiles.sh" "$@"
-}
-
-bootstrap() {
-  "$DOTFILES_REPO/bin/bootstrap.sh" "$@"
-}
-
-syncdot() {
   "$DOTFILES_REPO/bin/sync.sh" "$@"
 }
 
