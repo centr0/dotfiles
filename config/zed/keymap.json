@@ -18,12 +18,16 @@
       "space d a": "workspace::CloseAllDocks",
       "space f f": "file_finder::Toggle",
       "space c c": "agent::ToggleFocus",
+      "space c x": "workspace::ToggleRightDock",
       "space b d": "pane::CloseActiveItem",
       "space b o": "pane::CloseOtherItems",
-      "space e": "pane::RevealInProjectPanel",
+      "space e e": "pane::RevealInProjectPanel",
+      "space e x": "workspace::ToggleLeftDock",
       "space t f": "zed::OpenTasks", // open task file
       "space t s": "task::Spawn", // open task list
       "space t r": "task::Rerun",
+      "space t t": "terminal_panel::Toggle",
+      "space t x": "workspace::ToggleBottomDock",
     },
   },
   {

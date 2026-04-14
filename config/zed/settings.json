@@ -7,6 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "buffer_font_features": {
+    "calt": false,
+  },
+  "buffer_line_height": "comfortable",
   "soft_wrap": "preferred_line_length",
   "show_wrap_guides": false,
   "cursor_shape": "block",
@@ -95,7 +99,7 @@
   "selection_highlight": true,
   "text_rendering_mode": "platform_default",
   "agent_buffer_font_size": 16.0,
-  "buffer_font_weight": 350.0,
+  "buffer_font_weight": 300.0,
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "edit_predictions": {
     "provider": "copilot",

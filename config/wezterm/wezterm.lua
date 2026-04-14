@@ -9,14 +9,14 @@ return {
 	}),
 	font_size = 14,
 	line_height = 1.25,
-
+	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	-- 🧼 Clean look
 	hide_tab_bar_if_only_one_tab = true,
 	use_fancy_tab_bar = false,
 	enable_scroll_bar = false,
 
 	-- 🎨 Color scheme (Tokyo Night vibes)
-	color_scheme = "rose-pine",
+	color_scheme = "3024 (base16)",
 
 	colors = {
 		-- 🌑 Dark background
